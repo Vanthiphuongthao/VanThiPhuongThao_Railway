@@ -31,12 +31,26 @@ public class LoginPage extends GeneralPage {
     }
 
     //Methods
-    public HomePage login(String username, String password) {
-        this.getTxtUsername().sendKeys(username);
-        this.getTxtPassword().sendKeys(password);
+	/*
+	 * public HomePage login(String username,String password) {
+	 * this.getTxtUsername().sendKeys(username);
+	 * this.getTxtPassword().sendKeys(password); this.getBtnLogin().click();
+	 * 
+	 * //Land on home page return new HomePage(); }
+	 */
+    
+    public HomePage login(UserAccount userAccount) {
+        this.getTxtUsername().sendKeys(userAccount.getEmail());
+        this.getTxtPassword().sendKeys(userAccount.getPassword());
         this.getBtnLogin().click();
         
         //Land on home page
         return new HomePage();
     }
+    
+//    public HomePage login(UserAccount userAccount) {
+//    	this.getTxtUsername().sendKeys(userAccount.getEmail());
+//        this.getTxtPassword().sendKeys(userAccount.getPassword());
+//        this.getBtnLogin().click();
+//    }
 }
