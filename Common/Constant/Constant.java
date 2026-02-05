@@ -6,6 +6,7 @@ public class Constant {
 	
 	public static WebDriver WEBDRIVER;
 	public static final String RAILWAY_URL = "http://saferailway.somee.com/Page/HomePage.cshtml";
+	public static final String GUERRILLAMAIL_URL = "https://www.guerrillamail.com";
 	
 	// User Account
 	public static final String USERNAME = "TestDemo123456@sharklasers.com";
@@ -14,5 +15,11 @@ public class Constant {
 	
 	// Not-active Account Existing
 	public static final String notACTVEMAIL = "emailnotactived@sharklasers.com";
+	
+	// User Account Existing
+	public static final String existingEMAIL = "existingAccount@sharklasers.com";
+	
+	// Timeout
+	public static final int TIMEOUT = 5;
 	
 }

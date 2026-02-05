@@ -3,11 +3,10 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
-public class TC06 extends BaseTest {
+public class LogoutTest extends BaseTest {
 	@Test
-	public void TestCase06() {
-		System.out.println("TC06 - User is redirected to Home page after logging out");
+	public void TC06() {
+		System.out.println("TestCase06 - User is redirected to Home page after logging out");
 
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();
@@ -32,12 +31,7 @@ public class TC06 extends BaseTest {
 		
 		// Verify "Log out" tab is disappeared
 		String tabName = "Logout";
-//		Boolean actualResult = homePage.isTabExist(tabName);
-//		Boolean expectedResult = false;
-//		Assert.assertEquals(actualResult, expectedResult, "Log out tab is disappeared");
 		Assert.assertFalse(homePage.isTabExist(tabName), "");
-		
-//		Assert.assertFalse(GeneralPage.isTabExist(tabName), "Log out tab is disappeared");
 	}
 
 }

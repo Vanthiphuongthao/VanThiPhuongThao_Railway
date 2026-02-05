@@ -13,17 +13,13 @@ public class BaseTest {
 	// Not-active Account Existing
 	UserAccount notActUserAccount = new UserAccount(Constant.notACTVEMAIL, Constant.PASSWORD, Constant.PID);
 
-	Utilities utilities = new Utilities();
-
 	@BeforeMethod
 	public void beforeMethod() {
 		Constant.WEBDRIVER = new ChromeDriver();
 		Constant.WEBDRIVER.manage().window().maximize();
 	}
 
-	@AfterMethod
-	public void afterMethod() {
-		Constant.WEBDRIVER.quit();
-	}
-
+	/*
+	 * @AfterMethod public void afterMethod() { Constant.WEBDRIVER.quit(); }
+	 */
 }

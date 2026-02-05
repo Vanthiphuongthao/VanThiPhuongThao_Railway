@@ -9,6 +9,36 @@ import Common.Utilities;
 import Constant.Constant;
 
 public class GeneralPage {
+	
+	// Pages
+	private HomePage homePage;
+	private LoginPage loginPage;
+	private LogoutPage logoutPage;
+	private RegisterPage registerPage;
+	private FAQPage faqPage;
+	
+	public LoginPage getLoginPage() {
+		if (loginPage == null) {
+			loginPage = new LoginPage();
+		}
+		return loginPage;
+	}
+	
+	public LogoutPage getLogoutPage() {
+		if (logoutPage == null) {
+			logoutPage = new LogoutPage();
+		}
+		return logoutPage;
+	}
+	
+	public RegisterPage getRegisterPage() {
+		if (registerPage == null) {
+			registerPage = new RegisterPage();			
+		}
+		return registerPage;
+	}
+	
+	
 	// Locators
 	private final By tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
 	private final By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
@@ -51,6 +81,11 @@ public class GeneralPage {
 	public LoginPage gotoLoginPage() {
 		this.getTabLogin().click();
 		return new LoginPage();
+	}
+	
+	public RegisterPage gotoRegisterPage() {
+		this.getTabRegister().click();
+		return new RegisterPage();
 	}
 
 	public FAQPage gotoFAQPage() {
