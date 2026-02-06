@@ -3,9 +3,13 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Constant.Constant;
+
 public class LogoutTest extends BaseTest {
 	@Test
 	public void TC06() {
+		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
+		
 		System.out.println("TestCase06 - User is redirected to Home page after logging out");
 
 		System.out.println("1. Navigate to QA Railway Website");

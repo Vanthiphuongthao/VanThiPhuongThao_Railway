@@ -30,11 +30,13 @@ public class testMail {
 		// open railway in new tab
 		((JavascriptExecutor) Constant.WEBDRIVER).executeScript("window.open(arguments[0], '_blank');",
 				Constant.RAILWAY_URL);
+		String tempString = "";
 		
 		// switch to railway tab
 		for (String window : Constant.WEBDRIVER.getWindowHandles()) {
 			Constant.WEBDRIVER.switchTo().window(window);
 			if (Constant.WEBDRIVER.getCurrentUrl().contains("railway")) {
+				tempString = Constant.WEBDRIVER.getWindowHandle();
 				break;
 			}
 		}
@@ -51,11 +53,9 @@ public class testMail {
 		
 		// switch to fake mail tab
 		Constant.WEBDRIVER.switchTo().window(guerrillaWindow);
-		guerrillaMailPage.closeAdIfPresent();
 	    guerrillaMailPage.activeNewAccount();
 	    
 	    
-	    
-
+	    Constant.WEBDRIVER.switchTo().window(tempString);
 	}
 }

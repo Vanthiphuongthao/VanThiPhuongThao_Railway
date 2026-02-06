@@ -104,29 +104,7 @@ public class GeneralPage {
 
 	public boolean isTabExist(String tabName) {
 		String xpathString = String.format("//a[span[text()='%s']]", tabName);
-//		try {
-//			return Constant.WEBDRIVER.findElement(By.xpath(xpathString)).isDisplayed();
-//		} catch (Exception e) {
-//			return false;
-//		}
 		return Utilities.isDisplayed(xpathString);
 	}
-	
-	
-	/*
-	 * public static void isTabNotExist() { try { String xpathString =
-	 * String.format("//a[span[text()='%s']]", tabName);
-	 * Constant.WEBDRIVER.findElement(By.xpath(xpathString)); } catch (Exception e)
-	 * { // TODO: handle exception System.out.println("hello fail"); } }
-	 */
-
-	/*
-	 * public boolean isNotTabExist() { try { isTabExist();
-	 * Assert.fail(String.format("%s tab is still displayed after logging out",
-	 * tabName));
-	 * 
-	 * } catch (NoSuchElementException e) { // Expected exception, test passed } }
-	 */
-	
 	
 }

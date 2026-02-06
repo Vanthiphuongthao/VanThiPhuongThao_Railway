@@ -6,12 +6,9 @@ import org.testng.annotations.BeforeMethod;
 
 import Constant.Constant;
 import Common.Utilities;
+import Enums.Message;
 
 public class BaseTest {
-	UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
-
-	// Not-active Account Existing
-	UserAccount notActUserAccount = new UserAccount(Constant.notACTVEMAIL, Constant.PASSWORD, Constant.PID);
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -19,7 +16,9 @@ public class BaseTest {
 		Constant.WEBDRIVER.manage().window().maximize();
 	}
 
-	/*
-	 * @AfterMethod public void afterMethod() { Constant.WEBDRIVER.quit(); }
-	 */
+	@AfterMethod
+	public void afterMethod() {
+		Constant.WEBDRIVER.quit();
+	}
+
 }
