@@ -111,4 +111,15 @@ public class GuerrillaMailPage {
 		clickActivateLink();
 	}
 
+//	public void clickActivateLinkOpenInNewTab(String subject) {
+//		openConfirmationEmail(subject);
+//
+//		By locator = Utilities.waitForVisible(activeEmailLink, Constant.TIMEOUT);
+//		WebElement linkActive = Constant.WEBDRIVER.findElement(locator);
+//
+//		String href = linkActive.getAttribute("href");
+//
+//		((JavascriptExecutor) Constant.WEBDRIVER).executeScript("window.open(arguments[0], '_blank');", href);
+//	}
+
 }

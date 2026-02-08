@@ -1,15 +1,20 @@
 package Railway;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Common.Utilities;
 import Constant.Constant;
+import Enums.Message;
 import Enums.Tabs;
 import GuerrillaMail.GuerrillaMailPage;
 
 public class ResetPassword extends BaseTest {
 	@Test
 	public void TC10() {
+		String emailFrom = "thanhletraining03@gmail.com";
+		String mainTab = "Safe Railway";
+		
 		String emailPrefix = "vOAhekVV";
 		String emailResetPW = emailPrefix+ "@sharklasers.com";
 		String passwordReset = Utilities.generateRandomString(8);
@@ -23,10 +28,6 @@ public class ResetPassword extends BaseTest {
 		mailPage.open();
 		mailPage.createFakeMail(emailPrefix);
 		mailPage.cleanAllMail();
-
-//		// create existing account
-//		AccountFlow accountFlow = new AccountFlow();
-//		accountFlow.registerAndActiveAccount(userAccount);
 
 		System.out.println("1. Navigate to QA Railway Login page");
 		HomePage homePage = new HomePage();
@@ -45,17 +46,21 @@ public class ResetPassword extends BaseTest {
 		System.out.println(
 				"6. Open email with subject contaning \"Please reset your password\" and the email of the account at step 3");
 		System.out.println("7. Click on reset link");
-		mailPage.openInNewTab();
-
+		mailPage.open();
 		mailPage.createFakeMail(emailPrefix);
-		mailPage.activateAccountByEmail("thanhletraining03@gmail.com");
-
 		
+		mailPage.activateAccountByEmail(emailFrom);
+		Utilities.closeAllTabExceptHandle(mainTab);
+
 		System.out.println("8. Input same password into 2 fields \"new password\" and \"confirm password\"");
 		System.out.println("9. Click Reset Password");
+		
 		loginPage.resetNewPassword(userAccount, LoginPage.class);
 		
-
+		String actualResetMsg = loginPage.getLblResetPWMsgText();
+		String expectedResetMsg = Message.ERROR_RESET_PW_MSG_NOT_DISPLAYED.getMessage();
+		String errorMsg = Message.ERROR_RESET_PW_MSG_NOT_DISPLAYED.getMessage();
+		Assert.assertEquals(actualResetMsg, expectedResetMsg, errorMsg);
 	}
 
 }

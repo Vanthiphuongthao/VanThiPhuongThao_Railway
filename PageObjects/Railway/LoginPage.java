@@ -11,6 +11,7 @@ import org.openqa.selenium.devtools.v142.audits.model.HeavyAdIssueDetails;
 
 import Common.Utilities;
 import Constant.Constant;
+import net.bytebuddy.asm.Advice.This;
 
 public class LoginPage extends GeneralPage {
 
@@ -28,6 +29,7 @@ public class LoginPage extends GeneralPage {
 	private final By linkForgotPassword = By.xpath("//a[@href='/Account/ForgotPassword.cshtml']");
 
 	private final By lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
+	private final By lblResetPWMsg = By.xpath("//p[@class='message success']");
 
 	// Elements
 	protected WebElement getTxtUsername() {
@@ -65,6 +67,10 @@ public class LoginPage extends GeneralPage {
 	protected WebElement getBtnSendInstructions() {
 		return Constant.WEBDRIVER.findElement(btnSendInstructions);
 	}
+	
+	protected WebElement getLblResetPWMsg() {
+		return Constant.WEBDRIVER.findElement(lblResetPWMsg);
+	}
 
 	// Methods
 	public <T extends GeneralPage> T login(UserAccount userAccount, Class<T> pageClass) {
@@ -89,6 +95,11 @@ public class LoginPage extends GeneralPage {
 			throw new RuntimeException("Cannot create page: " + pageClass.getName(), e);
 		}
 
+	}
+	
+	public void resetPW(UserAccount userAccount) {
+	    this.getTxtEmail().sendKeys(userAccount.getEmail());
+	    Utilities.click(btnSendInstructions);
 	}
 	
 	public <T extends GeneralPage> T resetNewPassword(UserAccount userAccount, Class<T> pageClass) {
@@ -121,6 +132,10 @@ public class LoginPage extends GeneralPage {
 
 	public void clickLinkForgotPassword() {
 		Utilities.click(linkForgotPassword);
+	}
+	
+	public String getLblResetPWMsgText() {
+		return getLblResetPWMsg().getText();
 	}
 
 }

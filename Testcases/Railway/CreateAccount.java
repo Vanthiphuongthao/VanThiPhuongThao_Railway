@@ -78,10 +78,15 @@ public class CreateAccount extends BaseTest {
 
 	@Test
 	public void TC09() {
-		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
+		String emailFrom = "thanhletraining03@gmail.com";
+		String mainTab = "Safe Railway";
+		
+		String emailPrefix = Utilities.generateRandomString(8);
+		String email = emailPrefix + "@sharklasers.com";
+		
+		UserAccount userAccount = new UserAccount(email, Constant.PID, Constant.PID);
 
 		System.out.println("TestCase09 - User create and activate account");
-		
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();
 		homePage.open();
@@ -96,10 +101,6 @@ public class CreateAccount extends BaseTest {
 
 		System.out.println("3. Enter valid information into all fields");
 		System.out.println("4. Click on \"Register\" button");
-
-		String emailPrefix = Utilities.generateRandomString(8);
-		String email = emailPrefix + "@sharklasers.com";
-		userAccount.setEmail(email);
 		
 		RegisterPage registerPage = new RegisterPage();
 		registerPage.register(userAccount, RegisterPage.class);
@@ -120,8 +121,10 @@ public class CreateAccount extends BaseTest {
 		GuerrillaMailPage mailPage = new GuerrillaMailPage();
 		mailPage.open();
 		
+		System.out.println("open link");
 		mailPage.createFakeMail(emailPrefix);
-		mailPage.activateAccountByEmail("thanhletraining03@gmail.com");
+		mailPage.activateAccountByEmail(emailFrom);
+		Utilities.closeAllTabExceptHandle(mainTab);
 		
 		// verify confirm message
 		String actualConfirmedMsg = registerPage.getRegistrationConfirmedMsg();

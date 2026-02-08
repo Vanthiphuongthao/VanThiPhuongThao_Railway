@@ -87,17 +87,15 @@ public class RegisterPage extends GeneralPage {
 	public String getLblPIDErrorMsgText() {
 		return getLblPIDErrorMsg().getText();
 	}
-	
-	// ĐANG SỬA THÊM
 
 	public String getRegistrationConfirmedMsg() {
-//		String xpath = String.format(lblRegistrationConfirmedMsg, subject);
 		return Constant.WEBDRIVER.findElement(lblRegistrationConfirmedMsg).getText();
 	}
 
-	public boolean isRegistrationConfirmedMessageDisplayed() {
-		String expectedMsg = Message.REGISTRATION_CONFIRMED.getMessage();
-		String xpath = String.format(lblRegistrationConfirmedMsg, expectedMsg);
-		return Utilities.isDisplayed(By.xpath(xpath));
-	}
+//	public boolean isRegistrationConfirmedMessageDisplayed() {
+//		String expectedMsg = Message.REGISTRATION_CONFIRMED.getMessage();
+//		String xpath = String.format(lblRegistrationConfirmedMsg, expectedMsg);
+//		return Utilities.isDisplayed(By.xpath(xpath));
+//	}
+	
 }

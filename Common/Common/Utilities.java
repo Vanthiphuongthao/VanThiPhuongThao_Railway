@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import Constant.Constant;
@@ -36,6 +37,10 @@ public class Utilities {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public static WebElement getElement(By locator) {
+		return Constant.WEBDRIVER.findElement(locator);
 	}
 
 //	public static By waitForClickable(By locator) {
@@ -73,7 +78,7 @@ public class Utilities {
 	}
 
 	public static void click(By locator) {
-		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.WAIT_TO_DELETE_MAIL));
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
 		js.executeScript("arguments[0].click();", element);
@@ -89,6 +94,17 @@ public class Utilities {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		return element.getText().trim();
+	}
+
+	// close all tab exception
+	public static void closeAllTabExceptHandle(String keepHandle) {
+		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {
+			Constant.WEBDRIVER.switchTo().window(handle);
+			if (!Constant.WEBDRIVER.getTitle().contains(keepHandle)) {
+				Constant.WEBDRIVER.close();
+			}
+		}
+		Constant.WEBDRIVER.switchTo().window(Constant.WEBDRIVER.getWindowHandle());
 	}
 
 	// generate current date and time
