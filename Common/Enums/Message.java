@@ -16,7 +16,9 @@ public enum Message {
     LOGIN_ACCOUNT_LOCK_WARNING("You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes."),
 	
 	// Reset Password
-    RESET_PW_MSG("The new password cannot be the same with the current password"),
+    RESET_ERROR_SAME_PW_MSG("The new password cannot be the same with the current password"),
+    RESET_ERROR_FORM_MSG("Could not reset password. Please correct the errors and try again."),
+    RESET_ERROR_CONFIRM_PW_MSG("The password confirmation did not match the new password."),
     
     
 	// Error Message
@@ -28,6 +30,7 @@ public enum Message {
 	ACCOUNT_LOCK_MSG_NOT_DISPLAYED("Account lock message is not displayed as expected"),
 	REG_SUCCESS_MSG_NOT_DISPLAYED("Register success message is NOT displayed"),
 	ERROR_RESET_PW_MSG_NOT_DISPLAYED("Error reset message is not displayed as expected"),
+	RESET_FORM_NOT_DISPLAYED("Reset Password form is NOT displayed"),
 	
 	// Page is not displayed
 	REG_TABNAME_NOT_DISPLAYED("Register tab name is not displayed as expected");

@@ -21,6 +21,7 @@ public class LoginPage extends GeneralPage {
 	private final By txtEmail = By.xpath("//input[@id='email']");
 	private final By txtNewPassword = By.xpath("//input[@id='newPassword']");
 	private final By txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
+	private final By txtResetToken = By.xpath("//input[@id='resetToken']");
 
 	private final By btnLogin = By.xpath("//input[@value='login']");
 	private final By btnSendInstructions = By.xpath("//input[@type='submit' and @value='Send Instructions']");
@@ -29,7 +30,12 @@ public class LoginPage extends GeneralPage {
 	private final By linkForgotPassword = By.xpath("//a[@href='/Account/ForgotPassword.cshtml']");
 
 	private final By lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
+	private final By lblLoginFormErrorMsg = By.xpath("//p[@class='message error']");
+	private final By lblLoginConfirmPWErrorMsg = By
+			.xpath("//li[@class='confirm-password']//label[@class='validation-error']");
+
 	private final By lblResetPWMsg = By.xpath("//p[@class='message success']");
+	private final By lblResetPasswordForm = By.xpath("//legend[text()='Password Change Form']");
 
 	// Elements
 	protected WebElement getTxtUsername() {
@@ -43,11 +49,11 @@ public class LoginPage extends GeneralPage {
 	protected WebElement getTxtEmail() {
 		return Constant.WEBDRIVER.findElement(txtEmail);
 	}
-	
+
 	protected WebElement getTxtNewPassword() {
 		return Constant.WEBDRIVER.findElement(txtNewPassword);
 	}
-	
+
 	protected WebElement getTxtConfirmPassword() {
 		return Constant.WEBDRIVER.findElement(txtConfirmPassword);
 	}
@@ -67,9 +73,17 @@ public class LoginPage extends GeneralPage {
 	protected WebElement getBtnSendInstructions() {
 		return Constant.WEBDRIVER.findElement(btnSendInstructions);
 	}
-	
+
 	protected WebElement getLblResetPWMsg() {
 		return Constant.WEBDRIVER.findElement(lblResetPWMsg);
+	}
+	
+	protected WebElement getLblLoginFormErrorMsg() {
+		return Constant.WEBDRIVER.findElement(lblLoginFormErrorMsg);
+	}
+	
+	protected WebElement getLblLoginConfirmPWErrorMsg() {
+		return Constant.WEBDRIVER.findElement(lblLoginConfirmPWErrorMsg);
 	}
 
 	// Methods
@@ -96,15 +110,28 @@ public class LoginPage extends GeneralPage {
 		}
 
 	}
-	
+
 	public void resetPW(UserAccount userAccount) {
-	    this.getTxtEmail().sendKeys(userAccount.getEmail());
-	    Utilities.click(btnSendInstructions);
+		this.getTxtEmail().sendKeys(userAccount.getEmail());
+		Utilities.click(btnSendInstructions);
 	}
-	
+
 	public <T extends GeneralPage> T resetNewPassword(UserAccount userAccount, Class<T> pageClass) {
 		this.getTxtNewPassword().sendKeys(userAccount.getPassword());
 		this.getTxtConfirmPassword().sendKeys(userAccount.getPassword());
+		Utilities.click(btnResetPassword);
+
+		try {
+			return pageClass.getDeclaredConstructor().newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException("Cannot create page: " + pageClass.getName(), e);
+		}
+
+	}
+
+	public <T extends GeneralPage> T resetNewPWwithWrongConfirmPW(UserAccount userAccount, Class<T> pageClass) {
+		this.getTxtNewPassword().sendKeys(userAccount.getPassword());
+		this.getTxtConfirmPassword().sendKeys(Utilities.generateRandomString(8));
 		Utilities.click(btnResetPassword);
 
 		try {
@@ -133,9 +160,22 @@ public class LoginPage extends GeneralPage {
 	public void clickLinkForgotPassword() {
 		Utilities.click(linkForgotPassword);
 	}
-	
+
 	public String getLblResetPWMsgText() {
 		return getLblResetPWMsg().getText();
+	}
+
+	public boolean isResetPasswordFormDisplayed() {
+		return Utilities.isDisplayed(lblResetPasswordForm) && Utilities.isDisplayed(txtNewPassword)
+				&& Utilities.isDisplayed(txtConfirmPassword) && Utilities.isDisplayed(txtResetToken);
+	}
+	
+	public String getLblLoginFormErrorMsgText() {
+		return getLblLoginFormErrorMsg().getText();
+	}
+	
+	public String getLblLoginConfirmPWErrorMsgText() {
+		return getLblLoginConfirmPWErrorMsg().getText();
 	}
 
 }
