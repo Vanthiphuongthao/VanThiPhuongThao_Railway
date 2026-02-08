@@ -1,12 +1,11 @@
 package Railway;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
 import Constant.Constant;
-import GuerrillaMail.GuerrillaMailPage;
+import Enums.Message;
 
 public class RegisterPage extends GeneralPage {
 	// Locators
@@ -14,11 +13,15 @@ public class RegisterPage extends GeneralPage {
 	private final By txtPassword = By.xpath("//input[@id='password']");
 	private final By txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
 	private final By txtPID = By.xpath("//input[@id='pid']");
+
 	private final By btnRegister = By.xpath("//input[@value='Register']");
 
 	private final By lblRegisterErrorMsg = By.xpath("//p[@class='message error']");
 	private final By lblPasswordErrorMsg = By.xpath("//label[@for='password' and @class='validation-error']");
 	private final By lblPIDErrorMsg = By.xpath("//label[@for='pid' and @class='validation-error']");
+
+	private final By msgRegisterSuccessMsg = By.xpath("h1[align='center']");
+	private static final By lblRegistrationConfirmedMsg = By.xpath("//*[@id=\"content\"]/p");
 
 	// Elements
 	protected WebElement getTxtEmail() {
@@ -53,8 +56,12 @@ public class RegisterPage extends GeneralPage {
 		return Constant.WEBDRIVER.findElement(lblPIDErrorMsg);
 	}
 
+	protected WebElement getRegisterSuccessMsg() {
+		return Constant.WEBDRIVER.findElement(msgRegisterSuccessMsg);
+	}
+
 	// Methods
-	public HomePage register(UserAccount userAccount) {
+	public <T extends GeneralPage> T register(UserAccount userAccount, Class<T> pageClass) {
 		this.getTxtEmail().sendKeys(userAccount.getEmail());
 		this.getTxtPassword().sendKeys(userAccount.getPassword());
 		this.getTxtConfirmPassword().sendKeys(userAccount.getPassword());
@@ -62,104 +69,35 @@ public class RegisterPage extends GeneralPage {
 
 		this.getBtnRegister().click();
 
-		return new HomePage();
-	};
+		try {
+			return pageClass.getDeclaredConstructor().newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException("Cannot create page: " + pageClass.getName(), e);
+		}
+	}
 
 	public String getLblRegisterErrorMsgText() {
 		return getLblRegisterErrorMsg().getText();
 	}
-	
+
 	public String getLblPasswordErrorMsgText() {
 		return getLblPasswordErrorMsg().getText();
 	}
-	
+
 	public String getLblPIDErrorMsgText() {
 		return getLblPIDErrorMsg().getText();
 	}
+	
+	// ĐANG SỬA THÊM
 
-	public UserAccount registerAndNotActive(UserAccount userAccount) {
-		// 1. open Guerrilla Mail
-		GuerrillaMailPage guerrillaMailPage = new GuerrillaMailPage();
-		guerrillaMailPage.open();
-
-		// 2. generate fake email
-		String emailPrefix = Utilities.generateRandomString(8);
-		String email = emailPrefix + "@sharklasers.com";
-
-		// 3. create fake mail inbox
-		guerrillaMailPage.createFakeMail(emailPrefix);
-		String guerrillaWindow = Constant.WEBDRIVER.getWindowHandle();
-
-		// 4. open railway in new tab
-		((JavascriptExecutor) Constant.WEBDRIVER).executeScript("window.open(arguments[0], '_blank');",
-				Constant.RAILWAY_URL);
-		String railwayWindow = "";
-
-		// 5. switch to railway tab
-		for (String window : Constant.WEBDRIVER.getWindowHandles()) {
-			Constant.WEBDRIVER.switchTo().window(window);
-			if (Constant.WEBDRIVER.getCurrentUrl().contains("railway")) {
-				railwayWindow = Constant.WEBDRIVER.getWindowHandle();
-				break;
-			}
-		}
-
-		// 6. register account
-		HomePage homePage = new HomePage();
-		homePage.open();
-
-		RegisterPage registerPage = homePage.gotoRegisterPage();
-
-		userAccount.setEmail(email);
-		registerPage.register(userAccount);
-
-		// created not-activated account
-		return userAccount;
-	};
-
-	public UserAccount registerAndActiveAccount(UserAccount userAccount) {
-		// 1. open Guerrilla Mail
-		GuerrillaMailPage guerrillaMailPage = new GuerrillaMailPage();
-		guerrillaMailPage.open();
-
-		// 2. generate fake email
-		String emailPrefix = Utilities.generateRandomString(8);
-		String email = emailPrefix + "@sharklasers.com";
-
-		// 3. create fake mail
-		guerrillaMailPage.createFakeMail(emailPrefix);
-		String guerrillaWindow = Constant.WEBDRIVER.getWindowHandle();
-
-		// 4. open railway in new tab
-		((JavascriptExecutor) Constant.WEBDRIVER).executeScript("window.open(arguments[0], '_blank');",
-				Constant.RAILWAY_URL);
-		String railwayWindow = "";
-
-		// 5. switch to railway tab
-		for (String window : Constant.WEBDRIVER.getWindowHandles()) {
-			Constant.WEBDRIVER.switchTo().window(window);
-			if (Constant.WEBDRIVER.getCurrentUrl().contains("railway")) {
-				railwayWindow = Constant.WEBDRIVER.getWindowHandle();
-				break;
-			}
-		}
-
-		// 6. register account
-		HomePage homePage = new HomePage();
-		homePage.open();
-
-		RegisterPage registerPage = homePage.gotoRegisterPage();
-
-		userAccount.setEmail(email);
-		registerPage.register(userAccount);
-
-		// 7. activate account via email
-		Constant.WEBDRIVER.switchTo().window(guerrillaWindow);
-		guerrillaMailPage.activeNewAccount();
-
-		Constant.WEBDRIVER.switchTo().window(railwayWindow);
-
-		return userAccount;
+	public String getRegistrationConfirmedMsg() {
+//		String xpath = String.format(lblRegistrationConfirmedMsg, subject);
+		return Constant.WEBDRIVER.findElement(lblRegistrationConfirmedMsg).getText();
 	}
 
+	public boolean isRegistrationConfirmedMessageDisplayed() {
+		String expectedMsg = Message.REGISTRATION_CONFIRMED.getMessage();
+		String xpath = String.format(lblRegistrationConfirmedMsg, expectedMsg);
+		return Utilities.isDisplayed(By.xpath(xpath));
+	}
 }

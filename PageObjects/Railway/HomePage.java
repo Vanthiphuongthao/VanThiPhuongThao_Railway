@@ -1,7 +1,6 @@
 package Railway;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
 import Constant.Constant;
@@ -12,12 +11,12 @@ public class HomePage extends GeneralPage {
 
 	// Elements
 
-
 	// Methods
 	public HomePage open() {
 		Constant.WEBDRIVER.navigate().to(Constant.RAILWAY_URL);
 		return this;
 	}
+	
 	public void clickCreateAnAccount() {
 		Utilities.click(linkCreateAnAccount);
 	}

@@ -35,7 +35,5 @@ public class UserAccount {
 	public void setPid(String pid) {
 		this.pid = pid;
 	}
-	
-	
 
 }

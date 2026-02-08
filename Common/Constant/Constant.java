@@ -15,5 +15,6 @@ public class Constant {
 	
 	// Timeout
 	public static final int TIMEOUT = 30;
+	public static final int WAIT_TO_DELETE_MAIL = 60;
 	
 }

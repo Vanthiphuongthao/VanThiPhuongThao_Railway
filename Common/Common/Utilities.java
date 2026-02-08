@@ -30,9 +30,9 @@ public class Utilities {
 		return result.toString();
 	}
 
-	public static boolean isDisplayed(String element) {
+	public static boolean isDisplayed(By locator) {
 		try {
-			return Constant.WEBDRIVER.findElement(By.xpath(element)).isDisplayed();
+			return Constant.WEBDRIVER.findElement(locator).isDisplayed();
 		} catch (Exception e) {
 			return false;
 		}
@@ -44,7 +44,7 @@ public class Utilities {
 
 	public static By waitForClickable(By locator, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
-		wait.until(ExpectedConditions.elementToBeClickable(locator));
+		wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 		return locator;
 	}
 
@@ -60,7 +60,7 @@ public class Utilities {
 
 	public static void waitUntilStale(WebElement element) {
 		try {
-			WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
 			wait.until(ExpectedConditions.stalenessOf(element));
 		} catch (Exception e) {
 
@@ -68,33 +68,32 @@ public class Utilities {
 	}
 
 	public static void waitForPageFullyLoad() {
-		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
 		wait.until(ExpectedConditions.jsReturnsValue("return document.readyState == 'complete'"));
 	}
-	
 
-	// click
 	public static void click(By locator) {
-		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
 		js.executeScript("arguments[0].click();", element);
 	}
 
-	// enter
 	public static void enter(By locator, String valueString) {
-		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		element.sendKeys(valueString);
+	}
+
+	public static String getText(By locator) {
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		return element.getText().trim();
 	}
 
 	// generate current date and time
 	public static String generateCurrentDateAndTime() {
 		return new SimpleDateFormat("ddMMyyyyHHmmssSSS").format(new Date());
-	}
-	
-	public static void verifyMessage(String actualMsg, Message expectedMsg, Message errorMessage) {
-		Assert.assertEquals(actualMsg, expectedMsg.getMessage(), errorMessage.getMessage());
 	}
 
 }

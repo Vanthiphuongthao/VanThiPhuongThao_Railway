@@ -2,109 +2,65 @@ package Railway;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.json.StaticInitializerCoercer;
-import org.testng.Assert;
 
 import Common.Utilities;
 import Constant.Constant;
+import Enums.Tabs;
 
-public class GeneralPage {
-	
-	// Pages
-	private HomePage homePage;
-	private LoginPage loginPage;
-	private LogoutPage logoutPage;
-	private RegisterPage registerPage;
-	private FAQPage faqPage;
-	
-	public LoginPage getLoginPage() {
-		if (loginPage == null) {
-			loginPage = new LoginPage();
-		}
-		return loginPage;
-	}
-	
-	public LogoutPage getLogoutPage() {
-		if (logoutPage == null) {
-			logoutPage = new LogoutPage();
-		}
-		return logoutPage;
-	}
-	
-	public RegisterPage getRegisterPage() {
-		if (registerPage == null) {
-			registerPage = new RegisterPage();			
-		}
-		return registerPage;
-	}
-	
-	
+public abstract class GeneralPage {
+
 	// Locators
-	private final By tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
-	private final By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
-	private final By tabFAQ = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
+	private final String TAB_NAME_XPATH = "//div[@id='menu']//a[normalize-space()='%s']";
+
 	private final By lblWelcomeMessage = By.xpath("//div[@class='account']//strong");
-	private final By tabRegister = By.xpath("//div[@id='menu']//a[@href='/Account/Register.cshtml']");
+	private final By lblSuccessMsg = By.xpath("//div[@id='content']//h1");
+
 	private final By selectedTab = By.xpath("//li[@class='selected']");
-//	public static String tabName;
-	
+
 	// Elements
-	protected WebElement getTabLogin() {
-		return Constant.WEBDRIVER.findElement(tabLogin);
-	}
-
-	protected WebElement getTabLogout() {
-		return Constant.WEBDRIVER.findElement(tabLogout);
-	}
-
 	protected WebElement getLblWelcomeMessage() {
 		return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
-	}
-
-	protected WebElement getTabRegister() {
-		return Constant.WEBDRIVER.findElement(tabRegister);
-	}
-
-	protected WebElement getTabFAQ() {
-		return Constant.WEBDRIVER.findElement(tabFAQ);
 	}
 
 	protected WebElement getSelectedTab() {
 		return Constant.WEBDRIVER.findElement(selectedTab);
 	}
 
+	protected WebElement getLblSuccessMsg() {
+		return Constant.WEBDRIVER.findElement(lblSuccessMsg);
+	}
+
 	// Methods
+	public void clickTab(Tabs tab) {
+		String xpath = String.format(TAB_NAME_XPATH, tab.getText());
+		Utilities.waitForClickable(By.xpath(xpath), Constant.TIMEOUT);
+	}
+
+	public <T extends GeneralPage> T gotoPage(Tabs tab, Class<T> expectedPage) {
+		clickTab(tab);
+
+		try {
+			return expectedPage.getDeclaredConstructor().newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException("Cannot init page: " + expectedPage.getName(), e);
+		}
+	}
+
 	public String getWelcomeMessage() {
 		return this.getLblWelcomeMessage().getText();
-	}
-
-	public LoginPage gotoLoginPage() {
-		this.getTabLogin().click();
-		return new LoginPage();
-	}
-	
-	public RegisterPage gotoRegisterPage() {
-		this.getTabRegister().click();
-		return new RegisterPage();
-	}
-
-	public FAQPage gotoFAQPage() {
-		this.getTabFAQ().click();
-		return new FAQPage();
-	}
-
-	public HomePage gotoLogoutPage() {
-		this.getTabLogout().click();
-		return new HomePage();
 	}
 
 	public String getSelectedTabName() {
 		return this.getSelectedTab().getText();
 	}
 
-	public boolean isTabExist(String tabName) {
-		String xpathString = String.format("//a[span[text()='%s']]", tabName);
-		return Utilities.isDisplayed(xpathString);
+	public boolean isTabExist(Tabs tab) {
+		String xpath = String.format(TAB_NAME_XPATH, tab.getText());
+		return Utilities.isDisplayed(By.xpath(xpath));
 	}
 	
+	public String getRegisterSuccessMsgText() {
+		return getLblSuccessMsg().getText();
+	}
+
 }
