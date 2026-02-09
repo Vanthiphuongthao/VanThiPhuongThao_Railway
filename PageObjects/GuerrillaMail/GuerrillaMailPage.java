@@ -34,23 +34,8 @@ public class GuerrillaMailPage {
 	}
 
 	// Methods
-	private void switchToNewTab() {
-		Set<String> windowHandles = Constant.WEBDRIVER.getWindowHandles();
-		for (String handle : windowHandles) {
-			Constant.WEBDRIVER.switchTo().window(handle);
-		}
-	}
-
 	public GuerrillaMailPage open() {
 		Constant.WEBDRIVER.navigate().to(Constant.GUERRILLAMAIL_URL);
-		return this;
-	}
-
-	public GuerrillaMailPage openInNewTab() {
-		((JavascriptExecutor) Constant.WEBDRIVER).executeScript("window.open(arguments[0], '_blank');",
-				Constant.GUERRILLAMAIL_URL);
-
-		switchToNewTab();
 		return this;
 	}
 
@@ -75,51 +60,18 @@ public class GuerrillaMailPage {
 		}
 	}
 
-	// create fake mail
-	public void createFakeMail(String emailPrefix) {
+	public void setMail(String emailPrefix) {
 		Utilities.click(btnInputEmail);
 		getInputTxtEmail().clear();
 		Utilities.enter(inputTxtEmail, emailPrefix);
 		Utilities.click(btnSetButton);
 	}
 
-	// open and create email
-	public String openAndCreateEmail() {
-		GuerrillaMailPage mailPage = new GuerrillaMailPage();
-		mailPage.open();
-
-		String emailPrefix = Utilities.generateRandomString(8);
-		mailPage.createFakeMail(emailPrefix);
-
-		return emailPrefix;
-	}
-
-	// open confirmation email by subject
-	public void openConfirmationEmail(String subject) {
+	public void activateAccountByEmail(String subject) {
 		String xpath = String.format(emailSubjectXpathString, subject);
 		Utilities.click(By.xpath(xpath));
-	}
-
-	// click active link inside email
-	public void clickActivateLink() {
+		
 		Utilities.click(activeEmailLink);
 	}
-
-	// open mail and activate
-	public void activateAccountByEmail(String subject) {
-		openConfirmationEmail(subject);
-		clickActivateLink();
-	}
-
-//	public void clickActivateLinkOpenInNewTab(String subject) {
-//		openConfirmationEmail(subject);
-//
-//		By locator = Utilities.waitForVisible(activeEmailLink, Constant.TIMEOUT);
-//		WebElement linkActive = Constant.WEBDRIVER.findElement(locator);
-//
-//		String href = linkActive.getAttribute("href");
-//
-//		((JavascriptExecutor) Constant.WEBDRIVER).executeScript("window.open(arguments[0], '_blank');", href);
-//	}
 
 }

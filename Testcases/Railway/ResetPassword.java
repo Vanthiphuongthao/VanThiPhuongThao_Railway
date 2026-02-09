@@ -26,12 +26,14 @@ public class ResetPassword extends BaseTest {
 
 		GuerrillaMailPage mailPage = new GuerrillaMailPage();
 		mailPage.open();
-		mailPage.createFakeMail(emailPrefix);
+//		Utilities.openUrlInNewTab(Constant.GUERRILLAMAIL_URL);
+		mailPage.setMail(emailPrefix);
 		mailPage.cleanAllMail();
 
 		System.out.println("1. Navigate to QA Railway Login page");
 		HomePage homePage = new HomePage();
 		homePage.open();
+//		Utilities.openUrlInNewTab(Constant.RAILWAY_URL);
 		homePage.gotoPage(Tabs.LOGIN, LoginPage.class);
 
 		System.out.println("2. Click on \"Forgot Password page\" link");
@@ -47,7 +49,8 @@ public class ResetPassword extends BaseTest {
 				"6. Open email with subject contaning \"Please reset your password\" and the email of the account at step 3");
 		System.out.println("7. Click on reset link");
 		mailPage.open();
-		mailPage.createFakeMail(emailPrefix);
+//		Utilities.openUrlInNewTab(Constant.GUERRILLAMAIL_URL);
+		mailPage.setMail(emailPrefix);
 
 		mailPage.activateAccountByEmail(emailFrom);
 		Utilities.closeAllTabExceptHandle(mainTab);
@@ -79,7 +82,7 @@ public class ResetPassword extends BaseTest {
 
 		GuerrillaMailPage mailPage = new GuerrillaMailPage();
 		mailPage.open();
-		mailPage.createFakeMail(emailPrefix);
+		mailPage.setMail(emailPrefix);
 		mailPage.cleanAllMail();
 
 		System.out.println("1. Navigate to QA Railway Login page");
@@ -101,7 +104,7 @@ public class ResetPassword extends BaseTest {
 		System.out.println("7. Click on reset link");
 
 		mailPage.open();
-		mailPage.createFakeMail(emailPrefix);
+		mailPage.setMail(emailPrefix);
 
 		mailPage.activateAccountByEmail(emailFrom);
 		Utilities.closeAllTabExceptHandle(mainTab);

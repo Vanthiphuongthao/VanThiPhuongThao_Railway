@@ -20,6 +20,8 @@ public enum Message {
     RESET_ERROR_FORM_MSG("Could not reset password. Please correct the errors and try again."),
     RESET_ERROR_CONFIRM_PW_MSG("The password confirmation did not match the new password."),
     
+    // Book Ticket Message
+    BOOK_TICKET_SUCCESS_MSG("Ticket booked successfully!"),
     
 	// Error Message
 	WELCOME_MSG_NOT_DISPLAYED("Welcome message is not displayed as expected"),
@@ -31,6 +33,7 @@ public enum Message {
 	REG_SUCCESS_MSG_NOT_DISPLAYED("Register success message is NOT displayed"),
 	ERROR_RESET_PW_MSG_NOT_DISPLAYED("Error reset message is not displayed as expected"),
 	RESET_FORM_NOT_DISPLAYED("Reset Password form is NOT displayed"),
+	BOOK_TICKET_MSG_NOT_DISPLAYED("Book ticket message is not displayed as expected"),
 	
 	// Page is not displayed
 	REG_TABNAME_NOT_DISPLAYED("Register tab name is not displayed as expected");

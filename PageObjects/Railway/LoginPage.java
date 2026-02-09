@@ -3,15 +3,11 @@ package Railway;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v142.audits.model.HeavyAdIssueDetails;
 
 import Common.Utilities;
 import Constant.Constant;
-import net.bytebuddy.asm.Advice.This;
 
 public class LoginPage extends GeneralPage {
 
@@ -72,14 +68,6 @@ public class LoginPage extends GeneralPage {
 
 	protected WebElement getBtnSendInstructions() {
 		return Constant.WEBDRIVER.findElement(btnSendInstructions);
-	}
-
-	protected WebElement getLblResetPWMsg() {
-		return Constant.WEBDRIVER.findElement(lblResetPWMsg);
-	}
-	
-	protected WebElement getLblLoginFormErrorMsg() {
-		return Constant.WEBDRIVER.findElement(lblLoginFormErrorMsg);
 	}
 	
 	protected WebElement getLblLoginConfirmPWErrorMsg() {
@@ -162,8 +150,9 @@ public class LoginPage extends GeneralPage {
 	}
 
 	public String getLblResetPWMsgText() {
-		return getLblResetPWMsg().getText();
+		return Utilities.getElement(lblResetPWMsg).getText();
 	}
+	
 
 	public boolean isResetPasswordFormDisplayed() {
 		return Utilities.isDisplayed(lblResetPasswordForm) && Utilities.isDisplayed(txtNewPassword)
@@ -171,11 +160,11 @@ public class LoginPage extends GeneralPage {
 	}
 	
 	public String getLblLoginFormErrorMsgText() {
-		return getLblLoginFormErrorMsg().getText();
+		return Utilities.getElement(lblLoginFormErrorMsg).getText();
 	}
 	
 	public String getLblLoginConfirmPWErrorMsgText() {
-		return getLblLoginConfirmPWErrorMsg().getText();
+		return Utilities.getElement(lblLoginConfirmPWErrorMsg).getText();
 	}
 
 }

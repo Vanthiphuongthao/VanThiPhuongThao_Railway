@@ -18,9 +18,9 @@ public class CreateAccount extends BaseTest {
 		System.out.println("TestCase07 - User can't create account with an already in-use email");
 		System.out.println("Pre-condition: an actived account is existing");
 
-		// create existing account
-		AccountFlow accountFlow = new AccountFlow();
-		accountFlow.registerAndActiveAccount(userAccount);
+		// create not active account
+		Business accountFlow = new Business();
+		accountFlow.registerAccount(userAccount);
 
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();
@@ -80,10 +80,10 @@ public class CreateAccount extends BaseTest {
 	public void TC09() {
 		String emailFrom = "thanhletraining03@gmail.com";
 		String mainTab = "Safe Railway";
-		
+
 		String emailPrefix = Utilities.generateRandomString(8);
 		String email = emailPrefix + "@sharklasers.com";
-		
+
 		UserAccount userAccount = new UserAccount(email, Constant.PID, Constant.PID);
 
 		System.out.println("TestCase09 - User create and activate account");
@@ -101,37 +101,39 @@ public class CreateAccount extends BaseTest {
 
 		System.out.println("3. Enter valid information into all fields");
 		System.out.println("4. Click on \"Register\" button");
-		
+
 		RegisterPage registerPage = new RegisterPage();
 		registerPage.register(userAccount, RegisterPage.class);
-		
+
 		// verify
 		String actualSuccessMsg = registerPage.getRegisterSuccessMsgText();
 		String expectedSuccessMsg = Message.REGISTER_SUCCESS_MSG.getMessage();
 		String errorSucessMsg = Message.REG_SUCCESS_MSG_NOT_DISPLAYED.getMessage();
 		Assert.assertEquals(actualSuccessMsg, expectedSuccessMsg, errorSucessMsg);
-		
+
 		System.out.println(
 				"5. Get email information (webmail address, mailbox and password) and navigate to that webmail");
 		System.out.println("6. Login to the mailbox");
 		System.out.println(
 				"7. Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
 		System.out.println("8. Click on the activate link");
-		
+
 		GuerrillaMailPage mailPage = new GuerrillaMailPage();
-		mailPage.open();
-		
+		// ĐANG SỬA
+//		mailPage.open();
+		Utilities.openUrlInNewTab(Constant.GUERRILLAMAIL_URL);
+
 		System.out.println("open link");
-		mailPage.createFakeMail(emailPrefix);
+		mailPage.setMail(emailPrefix);
 		mailPage.activateAccountByEmail(emailFrom);
 		Utilities.closeAllTabExceptHandle(mainTab);
-		
+
 		// verify confirm message
 		String actualConfirmedMsg = registerPage.getRegistrationConfirmedMsg();
 		String expectedConfirmedMsg = Message.REGISTRATION_CONFIRMED.getMessage();
 		String errorConfirmedMsg = Message.REG_SUCCESS_MSG_NOT_DISPLAYED.getMessage();
 		Assert.assertEquals(actualConfirmedMsg, expectedConfirmedMsg, errorConfirmedMsg);
-		
+
 	}
 
 }

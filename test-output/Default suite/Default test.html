@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sun Feb 08 18:44:30 ICT 2026</td>
+<td>Started on:</td><td>Mon Feb 09 22:17:49 ICT 2026</td>
 </tr>
-<tr><td>Total time:</td><td>90 seconds (90337 ms)</td>
+<tr><td>Total time:</td><td>77 seconds (77025 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,14 +76,31 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Railway.ResetPassword.TC11()'><b>TC11</b><br>Test class: Railway.ResetPassword</td>
-<td><div><pre>java.lang.AssertionError: Error message is not displayed as expected expected [The new password cannot be the same with the current password] but found [Could not reset password. Please correct the errors and try again.]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at Railway.ResetPassword.TC11(ResetPassword.java:122)
+<td title='Railway.CreateAccount.TC07()'><b>TC07</b><br>Test class: Railway.CreateAccount</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[@id=&apos;inbox-id&apos;]/input&quot;}
+  (Session info: chrome=144.0.7559.133)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.17&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [a4423ab3079c5fd3e8f411da57555c86, findElement {value=//span[@id=&apos;inbox-id&apos;]/input, using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\ASUS\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59773}, goog:processID: 8828, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59773/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a4423ab3079c5fd3e8f411da57555c86
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at GuerrillaMail.GuerrillaMailPage.getInputTxtEmail(GuerrillaMailPage.java:33)
+	at GuerrillaMail.GuerrillaMailPage.setMail(GuerrillaMailPage.java:65)
+	at Railway.Business.registerAccount(Business.java:42)
+	at Railway.CreateAccount.TC07(CreateAccount.java:23)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -112,14 +129,31 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace523794808", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace523794808'><pre>java.lang.AssertionError: Error message is not displayed as expected expected [The new password cannot be the same with the current password] but found [Could not reset password. Please correct the errors and try again.]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at Railway.ResetPassword.TC11(ResetPassword.java:122)
+</pre></div><a href='#' onClick='toggleBox("stack-trace2109219177", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2109219177'><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[@id=&apos;inbox-id&apos;]/input&quot;}
+  (Session info: chrome=144.0.7559.133)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.17&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [a4423ab3079c5fd3e8f411da57555c86, findElement {value=//span[@id=&apos;inbox-id&apos;]/input, using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\ASUS\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59773}, goog:processID: 8828, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59773/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a4423ab3079c5fd3e8f411da57555c86
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at GuerrillaMail.GuerrillaMailPage.getInputTxtEmail(GuerrillaMailPage.java:33)
+	at GuerrillaMail.GuerrillaMailPage.setMail(GuerrillaMailPage.java:65)
+	at Railway.Business.registerAccount(Business.java:42)
+	at Railway.CreateAccount.TC07(CreateAccount.java:23)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -149,8 +183,8 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
-<td>87</td>
-<td>Railway.ResetPassword@411f53a0</td></tr>
+<td>73</td>
+<td>Railway.CreateAccount@2b71e916</td></tr>
 </table><p>
 </body>
 </html>

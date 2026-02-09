@@ -20,7 +20,6 @@ public class RegisterPage extends GeneralPage {
 	private final By lblPasswordErrorMsg = By.xpath("//label[@for='password' and @class='validation-error']");
 	private final By lblPIDErrorMsg = By.xpath("//label[@for='pid' and @class='validation-error']");
 
-	private final By msgRegisterSuccessMsg = By.xpath("h1[align='center']");
 	private static final By lblRegistrationConfirmedMsg = By.xpath("//*[@id=\"content\"]/p");
 
 	// Elements
@@ -44,22 +43,6 @@ public class RegisterPage extends GeneralPage {
 		return Constant.WEBDRIVER.findElement(btnRegister);
 	}
 
-	protected WebElement getLblRegisterErrorMsg() {
-		return Constant.WEBDRIVER.findElement(lblRegisterErrorMsg);
-	}
-
-	protected WebElement getLblPasswordErrorMsg() {
-		return Constant.WEBDRIVER.findElement(lblPasswordErrorMsg);
-	}
-
-	protected WebElement getLblPIDErrorMsg() {
-		return Constant.WEBDRIVER.findElement(lblPIDErrorMsg);
-	}
-
-	protected WebElement getRegisterSuccessMsg() {
-		return Constant.WEBDRIVER.findElement(msgRegisterSuccessMsg);
-	}
-
 	// Methods
 	public <T extends GeneralPage> T register(UserAccount userAccount, Class<T> pageClass) {
 		this.getTxtEmail().sendKeys(userAccount.getEmail());
@@ -77,25 +60,19 @@ public class RegisterPage extends GeneralPage {
 	}
 
 	public String getLblRegisterErrorMsgText() {
-		return getLblRegisterErrorMsg().getText();
+		return Utilities.getElement(lblRegisterErrorMsg).getText();
 	}
 
 	public String getLblPasswordErrorMsgText() {
-		return getLblPasswordErrorMsg().getText();
+		return Utilities.getElement(lblPasswordErrorMsg).getText();
 	}
 
 	public String getLblPIDErrorMsgText() {
-		return getLblPIDErrorMsg().getText();
+		return Utilities.getElement(lblPIDErrorMsg).getText();
 	}
 
 	public String getRegistrationConfirmedMsg() {
-		return Constant.WEBDRIVER.findElement(lblRegistrationConfirmedMsg).getText();
+		return Utilities.getElement(lblRegistrationConfirmedMsg).getText();
 	}
-
-//	public boolean isRegistrationConfirmedMessageDisplayed() {
-//		String expectedMsg = Message.REGISTRATION_CONFIRMED.getMessage();
-//		String xpath = String.format(lblRegistrationConfirmedMsg, expectedMsg);
-//		return Utilities.isDisplayed(By.xpath(xpath));
-//	}
 	
 }

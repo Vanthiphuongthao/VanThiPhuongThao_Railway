@@ -1,16 +1,21 @@
 package Common;
 
 import java.util.Date;
+import java.lang.annotation.ElementType;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -110,6 +115,52 @@ public class Utilities {
 	// generate current date and time
 	public static String generateCurrentDateAndTime() {
 		return new SimpleDateFormat("ddMMyyyyHHmmssSSS").format(new Date());
+	}
+
+	public static void openUrlInNewTab(String url) {
+		WebDriver driver = Constant.WEBDRIVER;
+
+		String currentHandle = driver.getWindowHandle();
+
+		((JavascriptExecutor) driver).executeScript("window.open(arguments[0], '_blank');", url);
+
+		for (String handle : driver.getWindowHandles()) {
+			if (!handle.equals(currentHandle)) {
+				driver.switchTo().window(handle);
+				break;
+			}
+		}
+	}
+
+	public static String getDateAfterDays(int days) {
+		LocalDate targetDate = LocalDate.now().plusDays(days);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+		return targetDate.format(formatter);
+	}
+
+	public static String getDateAfterDaysFromSelected(By dropdownLocator, int days) {
+
+		// 1. set selected date from UI
+		WebElement element = Constant.WEBDRIVER.findElement(dropdownLocator);
+		Select select = new Select(element);
+		String selectedDateText = select.getFirstSelectedOption().getText();
+
+		// 2. set date
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+		LocalDate selectedDate = LocalDate.parse(selectedDateText, formatter);
+		LocalDate targetDate = selectedDate.plusDays(days);
+
+		// 4. return formatted date
+		return targetDate.format(formatter);
+	}
+
+	public static void selectByVisibleText(By locator, String visibleText) {
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
+
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+		Select select = new Select(element);
+		select.selectByVisibleText(visibleText);
 	}
 
 }

@@ -114,8 +114,8 @@ public class LoginTest extends BaseTest {
 		System.out.println("Pre-condition: a not-active account is existing");
 
 		// create not-activated account
-		AccountFlow accountFlow = new AccountFlow();
-		accountFlow.registerAndNotActive(userAccount);
+		Business accountFlow = new Business();
+		accountFlow.registerNotActiveAccount(userAccount);
 
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();

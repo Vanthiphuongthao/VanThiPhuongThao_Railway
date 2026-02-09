@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\ASUS\AppData\Local\Temp\testng-eclipse-1861633699\testng-customsuite.xml</span>
+                    <span>C:\Users\ASUS\AppData\Local\Temp\testng-eclipse-588962777\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="Railway.ResetPassword" class="method navigator-link" hash-for-method="TC11">TC11</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="Railway.CreateAccount" class="method navigator-link" hash-for-method="TC07">TC07</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,21 +121,38 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">Railway.ResetPassword</span>
+              <span class="class-name">Railway.CreateAccount</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TC11">
-                  </a> <!-- TC11 -->
-                  <span class="method-name">TC11</span>
-                  <div class="stack-trace">java.lang.AssertionError: Error message is not displayed as expected expected [The new password cannot be the same with the current password] but found [Could not reset password. Please correct the errors and try again.]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at Railway.ResetPassword.TC11(ResetPassword.java:122)
+                  <a name="TC07">
+                  </a> <!-- TC07 -->
+                  <span class="method-name">TC07</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[@id=&apos;inbox-id&apos;]/input&quot;}
+  (Session info: chrome=144.0.7559.133)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.17&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [a4423ab3079c5fd3e8f411da57555c86, findElement {value=//span[@id=&apos;inbox-id&apos;]/input, using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\ASUS\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59773}, goog:processID: 8828, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59773/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a4423ab3079c5fd3e8f411da57555c86
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at GuerrillaMail.GuerrillaMailPage.getInputTxtEmail(GuerrillaMailPage.java:33)
+	at GuerrillaMail.GuerrillaMailPage.setMail(GuerrillaMailPage.java:65)
+	at Railway.Business.registerAccount(Business.java:42)
+	at Railway.CreateAccount.TC07(CreateAccount.java:23)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -173,7 +190,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\ASUS\AppData\Local\Temp\testng-eclipse-1861633699\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\ASUS\AppData\Local\Temp\testng-eclipse-588962777\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -182,11 +199,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;Railway.ResetPassword&quot;&gt;
+      &lt;class name=&quot;Railway.CreateAccount&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;TC11&quot;/&gt;
+          &lt;include name=&quot;TC07&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- Railway.ResetPassword --&gt;
+      &lt;/class&gt; &lt;!-- Railway.CreateAccount --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -228,9 +245,9 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'TC11')
-data.setCell(0, 2, 'Railway.ResetPassword')
-data.setCell(0, 3, 87445);
+data.setCell(0, 1, 'TC07')
+data.setCell(0, 2, 'Railway.CreateAccount')
+data.setCell(0, 3, 73100);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
@@ -250,13 +267,15 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">1 ignored method</span>
+            <span class="header-content">2 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">Railway.ResetPassword</span>
+              <span class="ignored-class-name">Railway.CreateAccount</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">TC10</span>
+                <span class="ignored-method-name">TC09</span>
+                <br/>
+                <span class="ignored-method-name">TC08</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -268,7 +287,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">Railway.ResetPassword</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">Railway.CreateAccount</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
                 <span class="method-start">0 ms</span>
@@ -276,8 +295,8 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">TC11</span>
-                <span class="method-start">2838 ms</span>
+                <span class="method-name">TC07</span>
+                <span class="method-start">3827 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
