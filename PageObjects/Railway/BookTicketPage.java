@@ -1,9 +1,13 @@
 package Railway;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
+import Enums.TicketHeader;
 
 public class BookTicketPage extends GeneralPage {
 	// Locators
@@ -14,8 +18,8 @@ public class BookTicketPage extends GeneralPage {
 	private final By ddlTicketAmount = By.xpath("//select[@name='TicketAmount']");
 
 	private final By btnBookTicket = By.xpath("//input[@value='Book ticket']");
-	
-	private final By msgBookTicketSuccessMsg = By.xpath("//h1[normalize-space()='Ticket booked successfully!']");
+
+	private final By lblBookTicketSuccessMsg = By.xpath("//h1[normalize-space()='Ticket booked successfully!']");
 
 	// Elements
 
@@ -44,10 +48,10 @@ public class BookTicketPage extends GeneralPage {
 	public void clickBookTicket() {
 		Utilities.click(btnBookTicket);
 	}
-	
+
 	public void selectDepartDateAfterDays(int days) {
 		String targetDate = Utilities.getDateAfterDaysFromSelected(ddlDepartDate, days);
-		
+
 		Utilities.selectByVisibleText(ddlDepartDate, targetDate);
 	}
 
@@ -61,10 +65,23 @@ public class BookTicketPage extends GeneralPage {
 		selectTicketAmount(amount);
 		clickBookTicket();
 	}
-	
-	public String getBookTicketSuccessMsgText() {
-		return Utilities.getElement(msgBookTicketSuccessMsg).getText();
-	}
-	
 
+	public String getBookTicketSuccessMsgText() {
+		return Utilities.getElement(lblBookTicketSuccessMsg).getText();
+	}
+
+	public Map<String, String> getTicketInfo(int rowIndex) {
+		Map<String, String> ticketInfo = new HashMap<>();
+
+		ticketInfo.put(TicketHeader.DEPART_STATION.getHeaderText(),
+				Utilities.getCellValueByHeader(TicketHeader.DEPART_STATION.getHeaderText(), rowIndex));
+		ticketInfo.put(TicketHeader.ARRIVE_STATION.getHeaderText(),
+				Utilities.getCellValueByHeader(TicketHeader.ARRIVE_STATION.getHeaderText(), rowIndex));
+		ticketInfo.put(TicketHeader.SEAT_TYPE.getHeaderText(),
+				Utilities.getCellValueByHeader(TicketHeader.SEAT_TYPE.getHeaderText(), rowIndex));
+		ticketInfo.put(TicketHeader.AMOUNT.getHeaderText(),
+				Utilities.getCellValueByHeader(TicketHeader.AMOUNT.getHeaderText(), rowIndex));
+
+		return ticketInfo;
+	}
 }

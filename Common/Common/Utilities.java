@@ -1,6 +1,8 @@
 package Common;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.lang.annotation.ElementType;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -162,5 +164,23 @@ public class Utilities {
 		Select select = new Select(element);
 		select.selectByVisibleText(visibleText);
 	}
+
+	// 02/10/2026
+//	public static String getCellValueByHeader(String headerName) {
+//
+//		String dynamicXpath = String.format("//td[count(//th[normalize-space()='%s']/preceding-sibling::th)+1]",
+//				headerName);
+//
+//		return Constant.WEBDRIVER.findElement(By.xpath(dynamicXpath)).getText();
+//	}
+
+	public static String getCellValueByHeader(String headerName, int rowIndex) {
+		String dynamicXpath = String.format(
+				"(//tr[%d]/td[count(//th[normalize-space()='%s']/preceding-sibling::th)+1])", rowIndex, headerName);
+
+		return Constant.WEBDRIVER.findElement(By.xpath(dynamicXpath)).getText();
+	}
+
+
 
 }
