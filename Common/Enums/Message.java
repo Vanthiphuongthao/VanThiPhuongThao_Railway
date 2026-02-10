@@ -34,6 +34,8 @@ public enum Message {
 	ERROR_RESET_PW_MSG_NOT_DISPLAYED("Error reset message is not displayed as expected"),
 	RESET_FORM_NOT_DISPLAYED("Reset Password form is NOT displayed"),
 	BOOK_TICKET_MSG_NOT_DISPLAYED("Book ticket message is not displayed as expected"),
+	TAB_NAME_NOT_DISPLAYED("Tab name is not displayed as expected"),
+	TITLE_NOT_DISPLAYED("Title is not displayed as expected"),
 	
 	// Page is not displayed
 	REG_TABNAME_NOT_DISPLAYED("Register tab name is not displayed as expected");

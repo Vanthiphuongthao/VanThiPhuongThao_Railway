@@ -4,7 +4,8 @@ public enum TicketHeader {
 	DEPART_STATION("Depart Station"),
 	ARRIVE_STATION("Arrive Station"),
 	SEAT_TYPE("Seat Type"),
-	AMOUNT("Amount");
+	AMOUNT("Amount"),
+	OPERATION("Operation");
 
 	private final String headerText;
 

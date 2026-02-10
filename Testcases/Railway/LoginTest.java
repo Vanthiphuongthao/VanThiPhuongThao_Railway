@@ -35,6 +35,8 @@ public class LoginTest extends BaseTest {
 
 	@Test
 	public void TC02() {
+		// ms luan 
+		//
 		UserAccount userAccount = new UserAccount("", Constant.PASSWORD, Constant.PID);
 
 		System.out.println("TestCase02 - User cannot login with blank \"Username\" textbox");

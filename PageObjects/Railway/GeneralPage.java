@@ -1,16 +1,20 @@
 package Railway;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
 import Constant.Constant;
 import Enums.Tabs;
+import Enums.TicketHeader;
 
 public abstract class GeneralPage {
 
 	// Locators
 	private final String TAB_NAME_XPATH = "//div[@id='menu']//a[normalize-space()='%s']";
+	private final String HEADER_TABLE = "//table//th";
 
 	private final By lblWelcomeMessage = By.xpath("//div[@class='account']//strong");
 	private final By lblSuccessMsg = By.xpath("//div[@id='content']//h1");
@@ -58,9 +62,22 @@ public abstract class GeneralPage {
 		String xpath = String.format(TAB_NAME_XPATH, tab.getText());
 		return Utilities.isDisplayed(By.xpath(xpath));
 	}
-	
+
 	public String getRegisterSuccessMsgText() {
 		return getLblSuccessMsg().getText();
+	}
+
+	public int getColumnIndex(TicketHeader header) {
+
+		List<WebElement> headers = Constant.WEBDRIVER.findElements(By.xpath(HEADER_TABLE));
+
+		for (int i = 0; i < headers.size(); i++) {
+			if (headers.get(i).getText().trim().equals(header.getHeaderText())) {
+				return i + 1;
+			}
+		}
+
+		throw new RuntimeException("Cannot find column with header: " + header.getHeaderText());
 	}
 
 }

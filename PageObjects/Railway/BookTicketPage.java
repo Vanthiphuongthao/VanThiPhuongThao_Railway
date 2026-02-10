@@ -21,6 +21,8 @@ public class BookTicketPage extends GeneralPage {
 
 	private final By lblBookTicketSuccessMsg = By.xpath("//h1[normalize-space()='Ticket booked successfully!']");
 
+	private final String ROW_XPATH = "//table//tr[td]/td[count(//th[normalize-space()='%s']/preceding-sibling::th)+1]";
+
 	// Elements
 
 	// Methods
@@ -55,9 +57,26 @@ public class BookTicketPage extends GeneralPage {
 		Utilities.selectByVisibleText(ddlDepartDate, targetDate);
 	}
 
-	public void bookTicket(int date, String departFrom, String arriveAt, String seatType, String amount) {
+	// with local Date
+	public void selectDepartDate(int days) {
+		String targetDate = Utilities.getDateAfterDays(days);
+		Utilities.selectByVisibleText(ddlDepartDate, targetDate);
+	}
+
+	public void bookTicket(TicketInfo ticketInfo) {
+		WebElement arriveAtElement = Utilities.getElement(ddlArriveAt);
+		selectDepartDateAfterDays(ticketInfo.getTargetdate());
+		selectDepartFrom(ticketInfo.getDepartStation());
+		Utilities.waitUntilStale(arriveAtElement);
+		selectArriveAt(ticketInfo.getArriveStation());
+		selectSeatType(ticketInfo.getSeatType());
+		selectTicketAmount(ticketInfo.getAmount());
+		clickBookTicket();
+	}
+
+	public void bookTicketAfterLocalDays(int date, String departFrom, String arriveAt, String seatType, String amount) {
 		WebElement getArriveAt = Utilities.getElement(ddlArriveAt);
-		selectDepartDateAfterDays(date);
+		selectDepartDate(date);
 		selectDepartFrom(departFrom);
 		Utilities.waitUntilStale(getArriveAt);
 		selectArriveAt(arriveAt);
@@ -70,18 +89,27 @@ public class BookTicketPage extends GeneralPage {
 		return Utilities.getElement(lblBookTicketSuccessMsg).getText();
 	}
 
-	public Map<String, String> getTicketInfo(int rowIndex) {
-		Map<String, String> ticketInfo = new HashMap<>();
+	public String getValueByHeader(String headerName) {
+		String xpath = String.format(ROW_XPATH, headerName);
+		return Utilities.getElement(By.xpath(xpath)).getText().trim();
+	}
 
-		ticketInfo.put(TicketHeader.DEPART_STATION.getHeaderText(),
-				Utilities.getCellValueByHeader(TicketHeader.DEPART_STATION.getHeaderText(), rowIndex));
-		ticketInfo.put(TicketHeader.ARRIVE_STATION.getHeaderText(),
-				Utilities.getCellValueByHeader(TicketHeader.ARRIVE_STATION.getHeaderText(), rowIndex));
-		ticketInfo.put(TicketHeader.SEAT_TYPE.getHeaderText(),
-				Utilities.getCellValueByHeader(TicketHeader.SEAT_TYPE.getHeaderText(), rowIndex));
-		ticketInfo.put(TicketHeader.AMOUNT.getHeaderText(),
-				Utilities.getCellValueByHeader(TicketHeader.AMOUNT.getHeaderText(), rowIndex));
+	public Map<TicketHeader, String> getTicketInfo() {
+		
+		Map<TicketHeader, String> ticketInfo = new HashMap<>();
 
+		for (TicketHeader header : TicketHeader.values()) {
+			ticketInfo.put(header, getValueByHeader(header.getHeaderText()));
+		}
+		
+//		Map<String, String> ticketInfo = new HashMap<>();
+//
+//		for (TicketHeader header : TicketHeader.values()) {
+//			ticketInfo.put(header.getHeaderText(), getValueByHeader(header.getHeaderText()));
+//		}
+//
+//		return ticketInfo;
 		return ticketInfo;
 	}
+
 }
