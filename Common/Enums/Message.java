@@ -21,33 +21,15 @@ public enum Message {
     RESET_ERROR_CONFIRM_PW_MSG("The password confirmation did not match the new password."),
     
     // Book Ticket Message
-    BOOK_TICKET_SUCCESS_MSG("Ticket booked successfully!"),
-    
-	// Error Message
-	WELCOME_MSG_NOT_DISPLAYED("Welcome message is not displayed as expected"),
-	ERROR_MSG_NOT_DISPLAYED("Error message is not displayed as expected"),
-	FORM_ERR_MSG_NOT_DISPLAYED("Form error message is not displayed as expected"),
-	PW_ERR_MSG_NOT_DISPLAYED("Password error message is not displayed as expected"),
-	PID_ERR_MSG_NOT_DISPLAYED("PID error message is not displayed as expected"),
-	ACCOUNT_LOCK_MSG_NOT_DISPLAYED("Account lock message is not displayed as expected"),
-	REG_SUCCESS_MSG_NOT_DISPLAYED("Register success message is NOT displayed"),
-	ERROR_RESET_PW_MSG_NOT_DISPLAYED("Error reset message is not displayed as expected"),
-	RESET_FORM_NOT_DISPLAYED("Reset Password form is NOT displayed"),
-	BOOK_TICKET_MSG_NOT_DISPLAYED("Book ticket message is not displayed as expected"),
-	TAB_NAME_NOT_DISPLAYED("Tab name is not displayed as expected"),
-	TITLE_NOT_DISPLAYED("Title is not displayed as expected"),
-	
-	// Page is not displayed
-	REG_TABNAME_NOT_DISPLAYED("Register tab name is not displayed as expected");
-	
+    BOOK_TICKET_SUCCESS_MSG("Ticket booked successfully!");	
 
 	private final String message;
 
-    Message(String message) {
-        this.message = message;
-    }
-
     public String getMessage() {
-        return message;
+		return message;
+	}
+
+	Message(String message) {
+        this.message = message;
     }
 }

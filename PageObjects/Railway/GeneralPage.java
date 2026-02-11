@@ -13,8 +13,8 @@ import Enums.TicketHeader;
 public abstract class GeneralPage {
 
 	// Locators
-	private final String TAB_NAME_XPATH = "//div[@id='menu']//a[normalize-space()='%s']";
-	private final String HEADER_TABLE = "//table//th";
+	private final String strTabName = "//div[@id='menu']//a[normalize-space()='%s']";
+	private final String strHeaderTable = "//table//th";
 
 	private final By lblWelcomeMessage = By.xpath("//div[@class='account']//strong");
 	private final By lblSuccessMsg = By.xpath("//div[@id='content']//h1");
@@ -36,7 +36,7 @@ public abstract class GeneralPage {
 
 	// Methods
 	public void clickTab(Tabs tab) {
-		String xpath = String.format(TAB_NAME_XPATH, tab.getText());
+		String xpath = String.format(strTabName, tab.getTab());
 		Utilities.waitForClickable(By.xpath(xpath), Constant.TIMEOUT);
 	}
 
@@ -59,7 +59,7 @@ public abstract class GeneralPage {
 	}
 
 	public boolean isTabExist(Tabs tab) {
-		String xpath = String.format(TAB_NAME_XPATH, tab.getText());
+		String xpath = String.format(strTabName, tab.getTab());
 		return Utilities.isDisplayed(By.xpath(xpath));
 	}
 
@@ -69,7 +69,7 @@ public abstract class GeneralPage {
 
 	public int getColumnIndex(TicketHeader header) {
 
-		List<WebElement> headers = Constant.WEBDRIVER.findElements(By.xpath(HEADER_TABLE));
+		List<WebElement> headers = Constant.WEBDRIVER.findElements(By.xpath(strHeaderTable));
 
 		for (int i = 0; i < headers.size(); i++) {
 			if (headers.get(i).getText().trim().equals(header.getHeaderText())) {

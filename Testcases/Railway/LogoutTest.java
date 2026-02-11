@@ -7,11 +7,11 @@ import Constant.Constant;
 import Enums.Tabs;
 
 public class LogoutTest extends BaseTest {
-	
+
 	@Test
 	public void TC06() {
 		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
-		
+
 		System.out.println("TestCase06 - User is redirected to Home page after logging out");
 
 		System.out.println("1. Navigate to QA Railway Website");
@@ -23,19 +23,18 @@ public class LogoutTest extends BaseTest {
 		loginPage.login(userAccount, LoginPage.class);
 
 		System.out.println("3. Click on \"FAQ\" tab");
-		FAQPage faqPage = homePage.gotoPage(Tabs.FAQ, FAQPage.class);
+		homePage.gotoPage(Tabs.FAQ, FAQPage.class);
 
 		System.out.println("4. Click on \"Log out\" tab");
-		homePage = faqPage.gotoPage(Tabs.LOGOUT, HomePage.class);
+		homePage.gotoPage(Tabs.LOGOUT, HomePage.class);
 
+		System.out.println("VP: Home page displays");
 		String actualTabName = homePage.getSelectedTabName();
-		String expectedTabNameString = Tabs.HOME.getText();
-
-		// Verify Home page displays
-		Assert.assertEquals(actualTabName, expectedTabNameString, "Home page displays");
+		String expectedTabName = Tabs.HOME.getTab();
+		Assert.assertEquals(actualTabName, expectedTabName, "Home page is not displays as expected");
 		
-		// Verify "Log out" tab is disappeared
-		Assert.assertFalse(homePage.isTabExist(Tabs.LOGOUT), "");
+		System.out.println("VP: \"Log out\" tab is disappeared");
+		Assert.assertFalse(homePage.isTabExist(Tabs.LOGOUT), "Log out tab is not disappeared as expected");
 	}
 
 }

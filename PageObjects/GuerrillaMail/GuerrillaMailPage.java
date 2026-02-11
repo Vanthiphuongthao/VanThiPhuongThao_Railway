@@ -2,7 +2,6 @@ package GuerrillaMail;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -24,13 +23,19 @@ public class GuerrillaMailPage {
 	private final By checkboxMail = By.xpath("//input[@type='checkbox' and @name='mid[]']");
 
 	// dynamic email subject
-	private final String emailSubjectXpathString = "//tbody[@id='email_list']//td[contains(text(),'%s')]";
+	private final String emailSubjectXpath = "//tbody[@id='email_list']//td[contains(text(),'%s')]";
+	
+	private final By resetEmailXpath = By.xpath("//tbody[@id='email_list']//span[starts-with(., 'Use this')]");
 
 	private final By activeEmailLink = By.xpath("//div[contains(@class, 'email_page')]//a[@target='_blank']");
 
 	// Elements
 	protected WebElement getInputTxtEmail() {
 		return Constant.WEBDRIVER.findElement(inputTxtEmail);
+	}
+	
+	protected WebElement getResetEmailXpath() {
+		return Constant.WEBDRIVER.findElement(resetEmailXpath);
 	}
 
 	// Methods
@@ -68,9 +73,14 @@ public class GuerrillaMailPage {
 	}
 
 	public void activateAccountByEmail(String subject) {
-		String xpath = String.format(emailSubjectXpathString, subject);
+		String xpath = String.format(emailSubjectXpath, subject);
 		Utilities.click(By.xpath(xpath));
 		
+		Utilities.click(activeEmailLink);
+	}
+	
+	public void resetAccount() {
+		Utilities.click(resetEmailXpath);
 		Utilities.click(activeEmailLink);
 	}
 

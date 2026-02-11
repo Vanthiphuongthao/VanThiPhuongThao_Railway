@@ -12,7 +12,7 @@ public enum Email {
 		this.email = email;
 	}
 	
-	public String getEmail() {
+	public String setEmail() {
 		return email;
 	}
 }

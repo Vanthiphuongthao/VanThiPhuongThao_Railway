@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
 import Constant.Constant;
-import Enums.Message;
 
 public class RegisterPage extends GeneralPage {
 	// Locators

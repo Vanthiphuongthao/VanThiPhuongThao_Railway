@@ -1,11 +1,11 @@
 package Railway;
 
 public class UserAccount {
-	
+
 	private String email;
 	private String password;
 	private String pid;
-	
+
 	public UserAccount(String email, String password, String pid) {
 		this.email = email;
 		this.password = password;
@@ -34,6 +34,10 @@ public class UserAccount {
 
 	public void setPid(String pid) {
 		this.pid = pid;
+	}
+
+	public String getUsername() {
+		return email.split("@")[0];
 	}
 
 }

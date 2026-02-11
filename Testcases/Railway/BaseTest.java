@@ -14,9 +14,9 @@ public class BaseTest {
 		Constant.WEBDRIVER.manage().window().maximize();
 	}
 
-//	@AfterMethod
-//	public void afterMethod() {
-//		Constant.WEBDRIVER.quit();
-//	}
+	@AfterMethod
+	public void afterMethod() {
+		Constant.WEBDRIVER.quit();
+	}
 
 }

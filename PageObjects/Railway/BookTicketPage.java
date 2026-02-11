@@ -21,7 +21,7 @@ public class BookTicketPage extends GeneralPage {
 
 	private final By lblBookTicketSuccessMsg = By.xpath("//h1[normalize-space()='Ticket booked successfully!']");
 
-	private final String ROW_XPATH = "//table//tr[td]/td[count(//th[normalize-space()='%s']/preceding-sibling::th)+1]";
+	private final String rowTableBookTicket = "//table//tr[td]/td[count(//th[normalize-space()='%s']/preceding-sibling::th)+1]";
 
 	// Elements
 
@@ -65,7 +65,7 @@ public class BookTicketPage extends GeneralPage {
 
 	public void bookTicket(TicketInfo ticketInfo) {
 		WebElement arriveAtElement = Utilities.getElement(ddlArriveAt);
-		selectDepartDateAfterDays(ticketInfo.getTargetdate());
+		selectDepartDateAfterDays(ticketInfo.getTargetDate());
 		selectDepartFrom(ticketInfo.getDepartStation());
 		Utilities.waitUntilStale(arriveAtElement);
 		selectArriveAt(ticketInfo.getArriveStation());
@@ -90,7 +90,7 @@ public class BookTicketPage extends GeneralPage {
 	}
 
 	public String getValueByHeader(String headerName) {
-		String xpath = String.format(ROW_XPATH, headerName);
+		String xpath = String.format(rowTableBookTicket, headerName);
 		return Utilities.getElement(By.xpath(xpath)).getText().trim();
 	}
 
@@ -101,14 +101,6 @@ public class BookTicketPage extends GeneralPage {
 		for (TicketHeader header : TicketHeader.values()) {
 			ticketInfo.put(header, getValueByHeader(header.getHeaderText()));
 		}
-		
-//		Map<String, String> ticketInfo = new HashMap<>();
-//
-//		for (TicketHeader header : TicketHeader.values()) {
-//			ticketInfo.put(header.getHeaderText(), getValueByHeader(header.getHeaderText()));
-//		}
-//
-//		return ticketInfo;
 		return ticketInfo;
 	}
 

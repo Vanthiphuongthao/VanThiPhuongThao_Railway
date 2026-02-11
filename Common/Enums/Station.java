@@ -8,13 +8,13 @@ public enum Station {
 	QUANG_NGAI("Quảng Ngãi"),	
 	DA_NANG("Đà Nẵng");
 
-	private final String displayName;
+	private final String station;
 
-	Station(String displayName) {
-		this.displayName = displayName;
+	Station(String station) {
+		this.station = station;
 	}
 
-	public String getStation() {
-		return displayName;
+	public String setStation() {
+		return station;
 	}
 }

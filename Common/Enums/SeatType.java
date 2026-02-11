@@ -8,14 +8,14 @@ public enum SeatType {
 	HARD_BED("Hard bed"),
 	SOFT_BED("Soft bed");
 
-	private final String displayName;
-
-	SeatType(String displayName) {
-		this.displayName = displayName;
-	}
+	private final String seatType;
 
 	public String getSeatType() {
-		return displayName;
+		return seatType;
 	}
 
+	SeatType(String seatType) {
+		this.seatType = seatType;
+	}
+	
 }

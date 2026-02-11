@@ -12,17 +12,17 @@ public enum Tabs {
 	CHANGE_PASSWORD("Change password"),
 	REGISTER("Register"),
 	LOGIN("Login"),
-	LOGOUT("Logout");
+	LOGOUT("Log out");
 	
 
-	private final String text;
+	private final String tab;
 
-	Tabs(String text) {
-		this.text = text;
+	Tabs(String tab) {
+		this.tab = tab;
 	}
 
-	public String getText() {
-		return text;
+	public String getTab() {
+		return tab;
 	}
 	
 }

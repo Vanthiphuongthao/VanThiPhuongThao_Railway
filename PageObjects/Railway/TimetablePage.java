@@ -3,21 +3,18 @@ package Railway;
 import org.openqa.selenium.By;
 
 import Common.Utilities;
-import Enums.TicketHeader;
 import Enums.TimetableHeader;
 
 public class TimetablePage extends GeneralPage {
 
 	// Elements
-
 	private String columIndexByHeader = "count(//th[normalize-space()='%s']/preceding-sibling::th) + 1";
-
+	
 	private String rowByRouteXpath = "//tr[td[%s][normalize-space()='%s'] and td[%s][normalize-space()='%s']]";
-
+	
 	private String actionByHeaderXpath = rowByRouteXpath + "// td[%s]//a";
 
 	// Methods
-
 	public String getColumnIndexXpath(TimetableHeader header) {
 		return String.format(columIndexByHeader, header.getTimetableHeader());
 	}

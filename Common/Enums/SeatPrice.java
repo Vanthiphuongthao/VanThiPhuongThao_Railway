@@ -11,17 +11,17 @@ public enum SeatPrice {
 	private final String code;
 	private final String expectedPrice;
 
-	SeatPrice(String code, String expectedPrice) {
-        this.code = code;
-        this.expectedPrice = expectedPrice;
-    }
-
 	public String getCode() {
 		return code;
 	}
 
 	public String getExpectedPrice() {
-        return expectedPrice;
+		return expectedPrice;
 	}
+
+	SeatPrice(String code, String expectedPrice) {
+        this.code = code;
+        this.expectedPrice = expectedPrice;
+    }
 	
 }

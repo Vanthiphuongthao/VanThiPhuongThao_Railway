@@ -27,8 +27,7 @@ public class LoginPage extends GeneralPage {
 
 	private final By lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
 	private final By lblLoginFormErrorMsg = By.xpath("//p[@class='message error']");
-	private final By lblLoginConfirmPWErrorMsg = By
-			.xpath("//li[@class='confirm-password']//label[@class='validation-error']");
+	private final By lblLoginConfirmPWErrorMsg = By.xpath("//li[@class='confirm-password']//label[@class='validation-error']");
 
 	private final By lblResetPWMsg = By.xpath("//p[@class='message success']");
 	private final By lblResetPasswordForm = By.xpath("//legend[text()='Password Change Form']");
