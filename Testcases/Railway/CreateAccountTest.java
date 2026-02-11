@@ -21,8 +21,7 @@ public class CreateAccountTest extends BaseTest {
 		System.out.println("TestCase07 - User can't create account with an already in-use email");
 
 		System.out.println("Pre-condition: an actived account is existing");
-		Business.registerAccount(userAccount);
-		Utilities.closeAllTabExceptHandle(mainTab);
+		Business.registerAccount(userAccount, mainTab);
 
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();
@@ -59,7 +58,7 @@ public class CreateAccountTest extends BaseTest {
 		registerPage.register(userAccount, RegisterPage.class);
 
 		System.out.println(
-				"VP: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
+				"VP: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form");
 		String actualFormErrorMsg = registerPage.getLblRegisterErrorMsgText();
 		String expectedFormErrorMsg = Message.REGISTER_FORM_HAS_ERRORS.getMessage();
 		Assert.assertEquals(actualFormErrorMsg, expectedFormErrorMsg, "Form error message is not displayed as expected");
@@ -77,7 +76,7 @@ public class CreateAccountTest extends BaseTest {
 
 	@Test
 	public void TC09() {
-		String emailFrom = Email.ACTIVE_ACCOUNT_EMAIL_SUBJECT.setEmail();
+		String emailSubject = Email.ACTIVE_ACCOUNT_EMAIL_SUBJECT.setEmail();
 		String mainTab = "Safe Railway";
 
 		String emailPrefix = Utilities.generateRandomString(8);
@@ -119,9 +118,7 @@ public class CreateAccountTest extends BaseTest {
 
 		GuerrillaMailPage mailPage = new GuerrillaMailPage();
 		mailPage.open();
-		mailPage.setMail(emailPrefix);
-		mailPage.activateAccountByEmail(emailFrom);
-		Utilities.closeAllTabExceptHandle(mainTab);
+		mailPage.activateAccountByEmail(emailPrefix, emailSubject, mainTab);
 
 		System.out.println(
 				"VP: Redirect to Railways page and message \"Registration Confirmed! You can now log in to the site\" is shown");

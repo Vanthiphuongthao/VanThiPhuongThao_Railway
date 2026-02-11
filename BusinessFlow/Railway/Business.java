@@ -2,9 +2,9 @@ package Railway;
 
 import Common.Utilities;
 import Constant.Constant;
-import GuerrillaMail.GuerrillaMailPage;
 import Enums.Email;
 import Enums.Tabs;
+import GuerrillaMail.GuerrillaMailPage;
 
 public class Business {
 
@@ -26,21 +26,22 @@ public class Business {
 		return userAccount;
 	}
 
-	public static UserAccount registerAccount(UserAccount userAccount) {
+	public static UserAccount registerAccount(UserAccount userAccount, String mainTab) {
 
 		// 1. register but not active
 		registerNotActiveAccount(userAccount);
+//		String mainHandle = Constant.WEBDRIVER.getWindowHandle();
 
 		// 2. open G Mail in new tab
 		Utilities.openUrlInNewTab(Constant.GUERRILLAMAIL_URL);
 		GuerrillaMailPage mailPage = new GuerrillaMailPage();
-		
-		// 3. set mail
-		String emailPrefix = userAccount.getEmail().split("@")[0];
-		mailPage.setMail(emailPrefix);
 
-		// 4. activate account by email
-		mailPage.activateAccountByEmail(Email.ACTIVE_ACCOUNT_EMAIL_SUBJECT.setEmail());
+		// 3. activate account by email
+		String emailPrefix = userAccount.getEmail().split("@")[0];
+		String emailSubject = Email.ACTIVE_ACCOUNT_EMAIL_SUBJECT.setEmail();
+		mailPage.setMail(emailPrefix);
+		mailPage.activateAccount(emailSubject);
+		Utilities.closeAllTabExceptHandle(mainTab);
 
 		return userAccount;
 	}

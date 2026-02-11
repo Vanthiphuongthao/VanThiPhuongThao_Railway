@@ -1,7 +1,10 @@
 package Railway;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -26,7 +29,6 @@ public class BookTicketPage extends GeneralPage {
 	// Elements
 
 	// Methods
-
 	public void selectDepartDate(String date) {
 		Utilities.selectByVisibleText(ddlDepartDate, date);
 	}
@@ -43,45 +45,66 @@ public class BookTicketPage extends GeneralPage {
 		Utilities.selectByVisibleText(ddlSeatType, seatType);
 	}
 
-	public void selectTicketAmount(String amount) {
-		Utilities.selectByVisibleText(ddlTicketAmount, amount);
+	public void selectTicketAmount(Integer amount) {
+		Utilities.selectByVisibleText(ddlTicketAmount, String.valueOf(amount));
 	}
 
 	public void clickBookTicket() {
 		Utilities.click(btnBookTicket);
 	}
 
-	public void selectDepartDateAfterDays(int days) {
-		String targetDate = Utilities.getDateAfterDaysFromSelected(ddlDepartDate, days);
-
-		Utilities.selectByVisibleText(ddlDepartDate, targetDate);
+	public String getDateAfterDaysFromDefault(String days) {
+		return Utilities.getDateAfterDaysFromSelected(ddlDepartDate, days);
 	}
+//	public void selectDepartDateAfterDays(String days) {
+//		String targetDate = Utilities.getDateAfterDaysFromSelected(ddlDepartDate, days);
+//		Utilities.selectByVisibleText(ddlDepartDate, targetDate);
+//	}
 
 	// with local Date
-	public void selectDepartDate(int days) {
+	public void getDateAfterDaysWithLocalDate(String days) {
 		String targetDate = Utilities.getDateAfterDays(days);
 		Utilities.selectByVisibleText(ddlDepartDate, targetDate);
 	}
 
 	public void bookTicket(TicketInfo ticketInfo) {
 		WebElement arriveAtElement = Utilities.getElement(ddlArriveAt);
-		selectDepartDateAfterDays(ticketInfo.getTargetDate());
+
+		selectDepartDate(ticketInfo.getDepartDate());
+		selectDepartFrom(ticketInfo.getDepartStation());
+
+		Utilities.waitUntilStale(arriveAtElement);
+
+		selectArriveAt(ticketInfo.getArriveStation());
+		selectSeatType(ticketInfo.getSeatType());
+		selectTicketAmount(ticketInfo.getAmount());
+
+		clickBookTicket();
+	}
+
+	public void bookTicketAfterDaysFromDefault(TicketInfo ticketInfo) {
+		WebElement arriveAtElement = Utilities.getElement(ddlArriveAt);
+
+		getDateAfterDaysFromDefault(ticketInfo.getDepartDate());
+		selectDepartFrom(ticketInfo.getDepartStation());
+
+		Utilities.waitUntilStale(arriveAtElement);
+
+		selectArriveAt(ticketInfo.getArriveStation());
+		selectSeatType(ticketInfo.getSeatType());
+		selectTicketAmount(ticketInfo.getAmount());
+
+		clickBookTicket();
+	}
+
+	public void bookTicketAfterLocalDays(TicketInfo ticketInfo) {
+		WebElement arriveAtElement = Utilities.getElement(ddlArriveAt);
+		getDateAfterDaysWithLocalDate(ticketInfo.getDepartDate());
 		selectDepartFrom(ticketInfo.getDepartStation());
 		Utilities.waitUntilStale(arriveAtElement);
 		selectArriveAt(ticketInfo.getArriveStation());
 		selectSeatType(ticketInfo.getSeatType());
 		selectTicketAmount(ticketInfo.getAmount());
-		clickBookTicket();
-	}
-
-	public void bookTicketAfterLocalDays(int date, String departFrom, String arriveAt, String seatType, String amount) {
-		WebElement getArriveAt = Utilities.getElement(ddlArriveAt);
-		selectDepartDate(date);
-		selectDepartFrom(departFrom);
-		Utilities.waitUntilStale(getArriveAt);
-		selectArriveAt(arriveAt);
-		selectSeatType(seatType);
-		selectTicketAmount(amount);
 		clickBookTicket();
 	}
 
@@ -95,7 +118,7 @@ public class BookTicketPage extends GeneralPage {
 	}
 
 	public Map<TicketHeader, String> getTicketInfo() {
-		
+
 		Map<TicketHeader, String> ticketInfo = new HashMap<>();
 
 		for (TicketHeader header : TicketHeader.values()) {

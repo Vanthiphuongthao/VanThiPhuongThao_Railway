@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\ASUS\AppData\Local\Temp\testng-eclipse-1887382694\testng-customsuite.xml</span>
+                    <span>C:\Users\ASUS\AppData\Local\Temp\testng-eclipse--205430647\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="Railway.ResetPasswordTest" class="method navigator-link" hash-for-method="TC10">TC10</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="Railway.CancelBookingTest" class="method navigator-link" hash-for-method="TC16">TC16</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,41 +121,19 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">Railway.ResetPasswordTest</span>
+              <span class="class-name">Railway.CancelBookingTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TC10">
-                  </a> <!-- TC10 -->
-                  <span class="method-name">TC10</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
-from disconnected: not connected to DevTools
-  (Session info: chrome=144.0.7559.133)
-Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.17&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [b4f764e37fee3e95a1baa9e5aa73142c, findElement {using=xpath, value=//tbody[@id=&apos;email_list&apos;]//td[contains(text(),&apos;thanhletraining03@gmail.com&apos;)]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\ASUS\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63539}, goog:processID: 14960, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63539/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: b4f764e37fee3e95a1baa9e5aa73142c
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:224)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:217)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
-	at Common.Utilities.click(Utilities.java:89)
-	at GuerrillaMail.GuerrillaMailPage.activateAccountByEmail(GuerrillaMailPage.java:78)
-	at Railway.Business.registerAccount(Business.java:44)
-	at Railway.ResetPasswordTest.TC10(ResetPasswordTest.java:24)
+                  <a name="TC16">
+                  </a> <!-- TC16 -->
+                  <span class="method-name">TC16</span>
+                  <div class="stack-trace">java.lang.AssertionError: The canceled ticket is not disappeared as expected expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertFalse(Assert.java:79)
+	at Railway.CancelBookingTest.TC16(CancelBookingTest.java:54)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -193,7 +171,7 @@ Session ID: b4f764e37fee3e95a1baa9e5aa73142c
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\ASUS\AppData\Local\Temp\testng-eclipse-1887382694\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\ASUS\AppData\Local\Temp\testng-eclipse--205430647\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -202,11 +180,11 @@ Session ID: b4f764e37fee3e95a1baa9e5aa73142c
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;Railway.ResetPasswordTest&quot;&gt;
+      &lt;class name=&quot;Railway.CancelBookingTest&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;TC10&quot;/&gt;
+          &lt;include name=&quot;TC16&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- Railway.ResetPasswordTest --&gt;
+      &lt;/class&gt; &lt;!-- Railway.CancelBookingTest --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -248,14 +226,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'TC10')
-data.setCell(0, 2, 'Railway.ResetPasswordTest')
-data.setCell(0, 3, 13919);
+data.setCell(0, 1, 'TC16')
+data.setCell(0, 2, 'Railway.CancelBookingTest')
+data.setCell(0, 3, 31575);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 13 seconds</span>
+              <span class="suite-total-time">Total running time: 31 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -270,16 +248,9 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">1 ignored method</span>
+            <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">Railway.ResetPasswordTest</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">TC11</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -288,7 +259,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">Railway.ResetPasswordTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">Railway.CancelBookingTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
                 <span class="method-start">0 ms</span>
@@ -296,9 +267,13 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">TC10</span>
-                <span class="method-start">1479 ms</span>
+                <span class="method-name">TC16</span>
+                <span class="method-start">4852 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">afterMethod</span>
+                <span class="method-start">36436 ms</span>
+              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

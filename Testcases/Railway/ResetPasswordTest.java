@@ -3,7 +3,6 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Common.Utilities;
 import Constant.Constant;
 import Enums.Message;
 import Enums.Tabs;
@@ -19,8 +18,7 @@ public class ResetPasswordTest extends BaseTest {
 		System.out.println("TestCase10 - Reset password shows error if the new password is same as current");
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		Business.registerAccount(userAccount);
-		Utilities.closeAllTabExceptHandle(mainTab);
+		Business.registerAccount(userAccount, mainTab);
 
 		System.out.println("1. Navigate to QA Railway Login page");
 		HomePage homePage = new HomePage();
@@ -40,9 +38,7 @@ public class ResetPasswordTest extends BaseTest {
 		System.out.println("7. Click on reset link");
 		GuerrillaMailPage mailPage = new GuerrillaMailPage();
 		mailPage.open();
-		mailPage.setMail(userAccount.getUsername());
-		mailPage.resetAccount();
-		Utilities.closeAllTabExceptHandle(mainTab);
+		mailPage.resetAccountByEmail(userAccount.getUsername(), mainTab);
 
 		System.out.println(
 				"VP: Error message \"Could not reset password. Please correct the errors and try again.\" displays above the form.");
@@ -69,8 +65,7 @@ public class ResetPasswordTest extends BaseTest {
 				"TestCase11 - Reset password shows error if the new password and confirm password doesn't match");
 
 		System.out.println("Pre-condition: an actived account is existing");
-		Business.registerAccount(userAccount);
-		Utilities.closeAllTabExceptHandle(mainTab);
+		Business.registerAccount(userAccount,mainTab);
 
 		System.out.println("1. Navigate to QA Railway Login page");
 		HomePage homePage = new HomePage();
@@ -91,9 +86,7 @@ public class ResetPasswordTest extends BaseTest {
 
 		GuerrillaMailPage mailPage = new GuerrillaMailPage();
 		mailPage.open();
-		mailPage.setMail(userAccount.getUsername());
-		mailPage.resetAccount();
-		Utilities.closeAllTabExceptHandle(mainTab);
+		mailPage.resetAccountByEmail(userAccount.getUsername(), mainTab);
 
 		System.out.println("8. Input different input into 2 fields  \"new password\" and \"confirm password\"");
 		System.out.println("9. Click Reset Password");

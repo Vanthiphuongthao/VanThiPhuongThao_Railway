@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -18,19 +19,6 @@ import org.openqa.selenium.WebElement;
 import Constant.Constant;
 
 public class Utilities {
-	
-	public static boolean isDisplayed(By locator) {
-		try {
-			return Constant.WEBDRIVER.findElement(locator).isDisplayed();
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
-	public static WebElement getElement(By locator) {
-		return Constant.WEBDRIVER.findElement(locator);
-	}
-
 	public static By waitForClickable(By locator, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
 		wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
@@ -64,6 +52,18 @@ public class Utilities {
 //	public static By waitForClickable(By locator) {
 //		return waitForClickable(locator, Constant.TIMEOUT);
 //	}
+
+	public static boolean isDisplayed(By locator) {
+		try {
+			return Constant.WEBDRIVER.findElement(locator).isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public static WebElement getElement(By locator) {
+		return Constant.WEBDRIVER.findElement(locator);
+	}
 
 	// Generate random string
 	public static String generateRandomString(int length) {
@@ -127,13 +127,16 @@ public class Utilities {
 		}
 	}
 
-	public static String getDateAfterDays(int days) {
-		LocalDate targetDate = LocalDate.now().plusDays(days);
+	public static String getDateAfterDays(String days) {
+		int numberOfDays = Integer.parseInt(days);
+		LocalDate targetDate = LocalDate.now().plusDays(numberOfDays);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
 		return targetDate.format(formatter);
 	}
 
-	public static String getDateAfterDaysFromSelected(By dropdownLocator, int days) {
+	public static String getDateAfterDaysFromSelected(By dropdownLocator, String days) {
+
+		int numberOfDays = Integer.parseInt(days);
 
 		// 1. set selected date from UI
 		WebElement element = Constant.WEBDRIVER.findElement(dropdownLocator);
@@ -143,17 +146,16 @@ public class Utilities {
 		// 2. set date
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
 		LocalDate selectedDate = LocalDate.parse(selectedDateText, formatter);
-		LocalDate targetDate = selectedDate.plusDays(days);
+		LocalDate targetDate = selectedDate.plusDays(numberOfDays);
 
 		// 4. return formatted date
 		return targetDate.format(formatter);
 	}
+	
 
 	public static void selectByVisibleText(By locator, String visibleText) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
-
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-
 		Select select = new Select(element);
 		select.selectByVisibleText(visibleText);
 	}
@@ -163,6 +165,16 @@ public class Utilities {
 				"(//tr[%d]/td[count(//th[normalize-space()='%s']/preceding-sibling::th)+1])", rowIndex, headerName);
 
 		return Constant.WEBDRIVER.findElement(By.xpath(dynamicXpath)).getText();
+	}
+
+	public static String randomDate(int startOffsetDays, int endOffsetDays, String formatDay) {
+		LocalDate today = LocalDate.now();
+		LocalDate startDate = today.plusDays(startOffsetDays);
+		LocalDate endDate = startDate.plusDays(endOffsetDays);
+		long randomDays = ThreadLocalRandom.current().nextLong(startDate.toEpochDay(), endDate.toEpochDay() + 1);
+		LocalDate randomDate = LocalDate.ofEpochDay(randomDays);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDay);
+		return randomDate.format(formatter);
 	}
 
 }

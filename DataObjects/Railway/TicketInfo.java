@@ -1,14 +1,14 @@
 package Railway;
 
 public class TicketInfo {
-	private int departDate;
+	private String departDate;
 	private String departStation;
 	private String arriveStation;
 	private String seatType;
-	private String amount;
+	private Integer amount;
 
 	// constructor
-	public TicketInfo(Integer departDate, String departStation, String arriveStation, String seatType, String amount) {
+	public TicketInfo(String departDate, String departStation, String arriveStation, String seatType, Integer amount) {
 		this.departDate = departDate;
 		this.departStation = departStation;
 		this.arriveStation = arriveStation;
@@ -16,12 +16,12 @@ public class TicketInfo {
 		this.amount = amount;
 	}
 
-	public int getTargetDate() {
+	public String getDepartDate() {
 		return departDate;
 	}
 
-	public void setTargetDate(int targetDate) {
-		this.departDate = targetDate;
+	public void setDepartDate(String departDate) {
+		this.departDate = departDate;
 	}
 
 	public String getDepartStation() {
@@ -48,11 +48,11 @@ public class TicketInfo {
 		this.seatType = seatType;
 	}
 
-	public String getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 }

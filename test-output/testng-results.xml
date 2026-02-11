@@ -1,57 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="2" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-11T16:32:47 ICT" name="Default suite" finished-at="2026-02-11T16:33:03 ICT" duration-ms="15447">
+  <suite started-at="2026-02-12T05:21:36 ICT" name="Default suite" finished-at="2026-02-12T05:22:13 ICT" duration-ms="37012">
     <groups>
     </groups>
-    <test started-at="2026-02-11T16:32:47 ICT" name="Default test" finished-at="2026-02-11T16:33:03 ICT" duration-ms="15447">
-      <class name="Railway.ResetPasswordTest">
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.ResetPasswordTest@411f53a0]" started-at="2026-02-11T16:32:47 ICT" name="beforeMethod" finished-at="2026-02-11T16:32:49 ICT" duration-ms="1478" status="PASS">
+    <test started-at="2026-02-12T05:21:36 ICT" name="Default test" finished-at="2026-02-12T05:22:13 ICT" duration-ms="37012">
+      <class name="Railway.CancelBookingTest">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.CancelBookingTest@36fc695d]" started-at="2026-02-12T05:21:36 ICT" name="beforeMethod" finished-at="2026-02-12T05:21:41 ICT" duration-ms="4849" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="TC10()[pri:0, instance:Railway.ResetPasswordTest@411f53a0]" started-at="2026-02-11T16:32:49 ICT" name="TC10" finished-at="2026-02-11T16:33:03 ICT" duration-ms="13919" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchSessionException">
+        <test-method signature="TC16()[pri:0, instance:Railway.CancelBookingTest@36fc695d]" started-at="2026-02-12T05:21:41 ICT" name="TC16" finished-at="2026-02-12T05:22:13 ICT" duration-ms="31575" status="FAIL">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[invalid session id: session deleted as the browser has closed the connection
-from disconnected: not connected to DevTools
-  (Session info: chrome=144.0.7559.133)
-Build info: version: '4.40.0', revision: 'b3333f1'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.17'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [b4f764e37fee3e95a1baa9e5aa73142c, findElement {using=xpath, value=//tbody[@id='email_list']//td[contains(text(),'thanhletraining03@gmail.com')]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\ASUS\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63539}, goog:processID: 14960, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63539/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: b4f764e37fee3e95a1baa9e5aa73142c]]>
+              <![CDATA[The canceled ticket is not disappeared as expected expected [false] but found [true]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
-from disconnected: not connected to DevTools
-  (Session info: chrome=144.0.7559.133)
-Build info: version: '4.40.0', revision: 'b3333f1'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.17'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [b4f764e37fee3e95a1baa9e5aa73142c, findElement {using=xpath, value=//tbody[@id='email_list']//td[contains(text(),'thanhletraining03@gmail.com')]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\ASUS\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63539}, goog:processID: 14960, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63539/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: b4f764e37fee3e95a1baa9e5aa73142c
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:224)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:217)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
-at Common.Utilities.click(Utilities.java:89)
-at GuerrillaMail.GuerrillaMailPage.activateAccountByEmail(GuerrillaMailPage.java:78)
-at Railway.Business.registerAccount(Business.java:44)
-at Railway.ResetPasswordTest.TC10(ResetPasswordTest.java:24)
+              <![CDATA[java.lang.AssertionError: The canceled ticket is not disappeared as expected expected [false] but found [true]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertFalse(Assert.java:79)
+at Railway.CancelBookingTest.TC16(CancelBookingTest.java:54)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -82,11 +52,15 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchSessionException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC10 -->
-      </class> <!-- Railway.ResetPasswordTest -->
+        </test-method> <!-- TC16 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.CancelBookingTest@36fc695d]" started-at="2026-02-12T05:22:13 ICT" name="afterMethod" finished-at="2026-02-12T05:22:13 ICT" duration-ms="441" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- Railway.CancelBookingTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

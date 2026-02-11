@@ -20,11 +20,11 @@ public class BookTicketTest extends BaseTest {
 	public void TC12() {
 		String mainTab = "Safe Railway";
 
-		int departDate = 2;
+		String departDate = "2";
 		String departFrom = Station.NHA_TRANG.setStation();
 		String arriveAt = Station.HUE.setStation();
 		String seatType = SeatType.SOFT_BED_AC.getSeatType();
-		String amountTicket = "1";
+		Integer amountTicket = 1;
 
 		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
 		TicketInfo ticket = new TicketInfo(departDate, departFrom, arriveAt, seatType, amountTicket);
@@ -32,8 +32,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("TestCase12 - User can book 1 ticket at a time");
 
 		System.out.println("Pre-condition: an actived account is existing");
-		Business.registerAccount(userAccount);
-		Utilities.closeAllTabExceptHandle(mainTab);
+		Business.registerAccount(userAccount, mainTab);
 
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();
@@ -51,7 +50,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("6. Select \"Soft bed with air conditioner\" for \"Seat type\"");
 		System.out.println("7. Select \"1\" for \"Ticket amount\"");
 		System.out.println("8. Click on \"Book ticket\" button");
-		bookTicketPage.bookTicket(ticket);
+		bookTicketPage.bookTicketAfterDaysFromDefault(ticket);
 
 		System.out.println("VP: Message \"Ticket booked successfully!\" displays");
 		String actualSuccessMsg = bookTicketPage.getBookTicketSuccessMsgText();
@@ -59,24 +58,27 @@ public class BookTicketTest extends BaseTest {
 		Assert.assertEquals(actualSuccessMsg, expectedSuccessMsg, "Book ticket message is not displayed as expected");
 
 		System.out.println(
-				"VP: Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
+				"VP: Ticket information display correctly (Depart Date, Depart Station, Arrive Station, Seat Type, Amount)");
 		Map<TicketHeader, String> ticketInfo = bookTicketPage.getTicketInfo();
 
-		Assert.assertEquals(ticketInfo.get(TicketHeader.DEPART_STATION), departFrom, "Assert MSG");
-		Assert.assertEquals(ticketInfo.get(TicketHeader.ARRIVE_STATION), arriveAt);
-		Assert.assertEquals(ticketInfo.get(TicketHeader.SEAT_TYPE), seatType);
-		Assert.assertEquals(ticketInfo.get(TicketHeader.AMOUNT), amountTicket);
+		Assert.assertEquals(ticketInfo.get(TicketHeader.DEPART_STATION), departFrom,
+				"Depart Station is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.ARRIVE_STATION), arriveAt,
+				"Arrive Station is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.SEAT_TYPE), seatType, "Seat Type is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.AMOUNT), String.valueOf(amountTicket),
+				"Amount Ticket is not displayed as expected");
 	}
 
 	@Test
 	public void TC13() {
 		String mainTab = "Safe Railway";
 
-		int departDate = 25;
+		String departDate = "25";
 		String departFrom = Station.NHA_TRANG.setStation();
 		String arriveAt = Station.SAI_GON.setStation();
 		String seatType = SeatType.SOFT_SEAT_AC.getSeatType();
-		String amountTicket = "5";
+		Integer amountTicket = 5;
 
 		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
 		TicketInfo ticket = new TicketInfo(departDate, departFrom, arriveAt, seatType, amountTicket);
@@ -84,8 +86,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("TestCase13 - User can book many tickets at a time");
 
 		System.out.println("Pre-condition: an actived account is existing");
-		Business.registerAccount(userAccount);
-		Utilities.closeAllTabExceptHandle(mainTab);
+		Business.registerAccount(userAccount, mainTab);
 
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();
@@ -104,7 +105,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("7. Select \"5\" for \"Ticket amount\"");
 		System.out.println("8. Click on \"Book ticket\" button");
 
-		bookTicketPage.bookTicket(ticket);
+		bookTicketPage.bookTicketAfterDaysFromDefault(ticket);
 
 		System.out.println("VP: Message \"Ticket booked successfully!\" displays");
 		String actualSuccessMsg = bookTicketPage.getBookTicketSuccessMsgText();
@@ -115,10 +116,13 @@ public class BookTicketTest extends BaseTest {
 				"VP: Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
 		Map<TicketHeader, String> ticketInfo = bookTicketPage.getTicketInfo();
 
-		Assert.assertEquals(ticketInfo.get(TicketHeader.DEPART_STATION), departFrom);
-		Assert.assertEquals(ticketInfo.get(TicketHeader.ARRIVE_STATION), arriveAt);
-		Assert.assertEquals(ticketInfo.get(TicketHeader.SEAT_TYPE), seatType);
-		Assert.assertEquals(ticketInfo.get(TicketHeader.AMOUNT), amountTicket);
+		Assert.assertEquals(ticketInfo.get(TicketHeader.DEPART_STATION), departFrom,
+				"Depart Station is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.ARRIVE_STATION), arriveAt,
+				"Arrive Station is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.SEAT_TYPE), seatType, "Seat Type is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.AMOUNT), String.valueOf(amountTicket),
+				"Amount Ticket is not displayed as expected");
 	}
 
 	@Test
@@ -133,8 +137,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("TestCase14 - User can check price of ticket from Timetable");
 
 		System.out.println("Pre-condition: an actived account is existing");
-		Business.registerAccount(userAccount);
-		Utilities.closeAllTabExceptHandle(mainTab);
+		Business.registerAccount(userAccount, mainTab);
 
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();
@@ -152,11 +155,13 @@ public class BookTicketTest extends BaseTest {
 
 		System.out.println("VP: \"Ticket Price\" page is loaded");
 		String actualTabName = ticketPricePage.getSelectedTabName();
-		Assert.assertEquals(actualTabName, Tabs.TICKET_PRICE, "Tab name is not displayed as expected");
+		String expectedTabName = Tabs.TICKET_PRICE.getTab();
+		Assert.assertEquals(actualTabName, expectedTabName, "Tab name is not displayed as expected");
 
 		System.out.println("VP: Ticket table shows \"Ticket price from Đà Nẵng to Sài Gòn\"");
 		String actualTitle = ticketPricePage.getPriceTitle(depart, arrive);
-		Assert.assertEquals(actualTitle, Title.TICKET_PRICE_DN_SG, "Title is not displayed as expected");
+		String expectedTitle = Title.TICKET_PRICE_DN_SG.getTitleTicketPrice();
+		Assert.assertEquals(actualTitle, expectedTitle, "Title is not displayed as expected");
 
 		System.out.println("VP: Price for each seat displays correctly");
 		String HS_actualPrice = ticketPricePage.getPriceBySeat(SeatPrice.HS.getCode());
@@ -173,23 +178,23 @@ public class BookTicketTest extends BaseTest {
 		String SB_expectedPrice = SeatPrice.SB.getExpectedPrice();
 		String SBC_expectedPrice = SeatPrice.SBC.getExpectedPrice();
 
-		Assert.assertEquals(HS_actualPrice, HS_expectedPrice);
-		Assert.assertEquals(SS_actualPrice, SS_expectedPrice);
-		Assert.assertEquals(SSC_actualPrice, SSC_expectedPrice);
-		Assert.assertEquals(HB_actualPrice, HB_expectedPrice);
-		Assert.assertEquals(SB_actualPrice, SB_expectedPrice);
-		Assert.assertEquals(SBC_actualPrice, SBC_expectedPrice);
+		Assert.assertEquals(HS_actualPrice, HS_expectedPrice, "Price for HS seat is not displayed as expected");
+		Assert.assertEquals(SS_actualPrice, SS_expectedPrice, "Price for SS seat is not displayed as expected");
+		Assert.assertEquals(SSC_actualPrice, SSC_expectedPrice, "Price for SSC seat is not displayed as expected");
+		Assert.assertEquals(HB_actualPrice, HB_expectedPrice, "Price for HB seat is not displayed as expected");
+		Assert.assertEquals(SB_actualPrice, SB_expectedPrice, "Price for SB seat is not displayed as expected");
+		Assert.assertEquals(SBC_actualPrice, SBC_expectedPrice, "Price for SBC seat is not displayed as expected");
 	}
 
 	@Test
 	public void TC15() {
 		String mainTab = "Safe Railway";
 
-		int departDate = 1;
+		String departDate = "1";
 		String departFrom = Station.QUANG_NGAI.setStation();
 		String arriveAt = Station.HUE.setStation();
 		String seatType = SeatType.SOFT_SEAT_AC.getSeatType();
-		String amountTicket = "5";
+		Integer amountTicket = 5;
 
 		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
 		TicketInfo ticket = new TicketInfo(departDate, departFrom, arriveAt, seatType, amountTicket);
@@ -197,8 +202,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("TestCase15 - User can book ticket from Timetable");
 
 		System.out.println("Pre-condition: an actived account is existing");
-		Business.registerAccount(userAccount);
-		Utilities.closeAllTabExceptHandle(mainTab);
+		Business.registerAccount(userAccount, mainTab);
 
 		System.out.println("1. Navigate to QA Railway Website");
 		HomePage homePage = new HomePage();
@@ -216,21 +220,24 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("6. Select Ticket amount = 5");
 		System.out.println("7. Click on \"Book ticket\" button");
 
-		bookTicketPage.bookTicket(ticket);
+		bookTicketPage.bookTicketAfterLocalDays(ticket);
 
 		System.out.println("VP: Message \"Ticket booked successfully!\" displays");
 		String actualSuccessMsg = bookTicketPage.getBookTicketSuccessMsgText();
-		Assert.assertEquals(actualSuccessMsg, Message.BOOK_TICKET_SUCCESS_MSG,
-				"Book ticket message is not displayed as expected");
+		String expectedSuccessMsg = Message.BOOK_TICKET_SUCCESS_MSG.getMessage();
+		Assert.assertEquals(actualSuccessMsg, expectedSuccessMsg, "Book ticket message is not displayed as expected");
 
 		System.out.println(
 				"VP: Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
 		Map<TicketHeader, String> ticketInfo = bookTicketPage.getTicketInfo();
 
-		Assert.assertEquals(ticketInfo.get(TicketHeader.DEPART_STATION), departFrom);
-		Assert.assertEquals(ticketInfo.get(TicketHeader.ARRIVE_STATION), arriveAt);
-		Assert.assertEquals(ticketInfo.get(TicketHeader.SEAT_TYPE), seatType);
-		Assert.assertEquals(ticketInfo.get(TicketHeader.AMOUNT), amountTicket);
+		Assert.assertEquals(ticketInfo.get(TicketHeader.DEPART_STATION), departFrom,
+				"Depart Station is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.ARRIVE_STATION), arriveAt,
+				"Arrive Station is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.SEAT_TYPE), seatType, "Seat Type is not displayed as expected");
+		Assert.assertEquals(ticketInfo.get(TicketHeader.AMOUNT), String.valueOf(amountTicket),
+				"Amount Ticket is not displayed as expected");
 	}
 
 }
