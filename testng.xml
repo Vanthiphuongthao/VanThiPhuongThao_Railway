@@ -2,8 +2,16 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
   <test thread-count="5" name="Test">
+  <parameter name="browser" value="chrome"></parameter>
     <classes>
+      <class name="Railway.LogoutTest">
+      <methods><include name="TC06"></include></methods>
+      </class>
+      <!--<class name="Railway.ResetPasswordTest"/>
+      <class name="Railway.CancelBookingTest"/>
       <class name="Railway.LoginTest"/>
+      <class name="Railway.BookTicketTest"/>
+      <class name="Railway.CreateAccountTest"/>-->
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
