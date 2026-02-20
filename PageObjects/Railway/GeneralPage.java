@@ -51,9 +51,8 @@ public abstract class GeneralPage {
 	}
 
 	public String getWelcomeMessage() {
-//		return this.getLblWelcomeMessage().getText();
 		return Utilities.waitForVisible(lblWelcomeMessage, Constant.TIMEOUT).getText();
-//		return Utilities.getTextByJS(lblWelcomeMessage);
+//		return Utilities.getTextElementByJS(lblWelcomeMessage);
 	}
 
 	public String getSelectedTabName() {

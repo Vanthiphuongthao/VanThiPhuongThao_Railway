@@ -44,12 +44,19 @@ public class RegisterPage extends GeneralPage {
 
 	// Methods
 	public <T extends GeneralPage> T register(UserAccount userAccount, Class<T> pageClass) {
-		this.getTxtEmail().sendKeys(userAccount.getEmail());
-		this.getTxtPassword().sendKeys(userAccount.getPassword());
-		this.getTxtConfirmPassword().sendKeys(userAccount.getPassword());
-		this.getTxtPID().sendKeys(userAccount.getPid());
+		Utilities.enter(txtEmail, userAccount.getEmail());
+		Utilities.enter(txtPassword, userAccount.getPassword());
+		Utilities.enter(txtConfirmPassword, userAccount.getPassword());
+		Utilities.enter(txtPID, userAccount.getPid());
+		
+		Utilities.click(btnRegister);
+		
+//		this.getTxtEmail().sendKeys(userAccount.getEmail());
+//		this.getTxtPassword().sendKeys(userAccount.getPassword());
+//		this.getTxtConfirmPassword().sendKeys(userAccount.getPassword());
+//		this.getTxtPID().sendKeys(userAccount.getPid());
 
-		this.getBtnRegister().click();
+//		this.getBtnRegister().click();
 
 		try {
 			return pageClass.getDeclaredConstructor().newInstance();

@@ -100,6 +100,16 @@ public class Utilities {
 		return element.getText().trim();
 	}
 
+	// 20/02/2026
+//	public static String getTextElementByJS(By locator) {
+//		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
+//		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+//		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+//		String text = (String) ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("return arguments[0].innerText;",
+//				element);
+//		return text.strip();
+//	}
+
 	// close all tab exception tab handle
 	public static void closeAllTabExceptHandle(String keepHandle) {
 		for (String handle : Constant.WEBDRIVER.getWindowHandles()) {

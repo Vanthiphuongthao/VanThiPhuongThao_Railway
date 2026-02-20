@@ -22,10 +22,10 @@ public class BaseTest {
 			Constant.WEBDRIVER = new FirefoxDriver();
 
 		}
-//		Constant.WEBDRIVER.manage().window().maximize();
+		Constant.WEBDRIVER.manage().window().maximize();
 		
 		// 19/02
-		Constant.WEBDRIVER.manage().window().setSize(new Dimension(1237, 870));
+//		Constant.WEBDRIVER.manage().window().setSize(new Dimension(1237, 870));
 	}
 
 //	@AfterMethod
