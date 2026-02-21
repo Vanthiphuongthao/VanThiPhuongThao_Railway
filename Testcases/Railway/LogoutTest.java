@@ -3,6 +3,7 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Common.Utilities;
 import Constant.Constant;
 import Enums.Tabs;
 
@@ -21,6 +22,7 @@ public class LogoutTest extends BaseTest {
 		System.out.println("2. Login with valid Email and Password");
 		LoginPage loginPage = homePage.gotoPage(Tabs.LOGIN, LoginPage.class);
 		loginPage.login(userAccount, LoginPage.class);
+		homePage.waitTabSelected(Tabs.HOME);
 
 		System.out.println("3. Click on \"FAQ\" tab");
 		homePage.gotoPage(Tabs.FAQ, FAQPage.class);

@@ -22,6 +22,7 @@ public class Business {
 
 		RegisterPage registerPage = homePage.gotoPage(Tabs.REGISTER, RegisterPage.class);
 		registerPage.register(userAccount, HomePage.class);
+		Utilities.waitForPageFullyLoad();
 
 		return userAccount;
 	}

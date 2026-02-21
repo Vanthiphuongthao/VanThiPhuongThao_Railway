@@ -24,7 +24,7 @@ public class LoginTest extends BaseTest {
 		System.out.println("3. Enter valid Email and Password");
 		System.out.println("4. Click on \"Login\" button");
 		System.out.println("VP: User is logged into Railway. Welcome user message is displayed.");
-		String actualMsg = loginPage.login(userAccount, HomePage.class).getWelcomeMessage();
+		String actualMsg = loginPage.login(userAccount, HomePage.class).getWelcomeMessage(userAccount.getEmail());
 		String expectedMsg = "Welcome " + userAccount.getEmail();
 
 		Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");

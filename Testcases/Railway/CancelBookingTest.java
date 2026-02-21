@@ -13,14 +13,14 @@ public class CancelBookingTest extends BaseTest {
 	public void TC16() {
 		String mainTab = "Safe Railway";
 
-		String departDate = "2";
+		String plusDate = "2";
 		String departFrom = Station.NHA_TRANG.setStation();
 		String arriveAt = Station.HUE.setStation();
 		String seatType = SeatType.SOFT_BED_AC.getSeatType();
 		Integer amountTicket = 1;
 
 		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
-		TicketInfo ticket = new TicketInfo(departDate, departFrom, arriveAt, seatType, amountTicket);
+		TicketInfo ticket = new TicketInfo(plusDate, departFrom, arriveAt, seatType, amountTicket);
 
 		System.out.println("TestCase16 - User can cancel a ticket");
 

@@ -25,10 +25,6 @@ public class Utilities {
 		return locator;
 	}
 
-//	public static By waitForVisible(By locator) {
-//		return waitForVisible(locator, Constant.TIMEOUT);
-//	}
-
 	public static WebElement waitForVisible(By locator, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -48,10 +44,6 @@ public class Utilities {
 		wait.until(ExpectedConditions.jsReturnsValue("return document.readyState == 'complete'"));
 	}
 
-//	public static By waitForClickable(By locator) {
-//		return waitForClickable(locator, Constant.TIMEOUT);
-//	}
-
 	public static boolean isDisplayed(By locator) {
 		try {
 			return Constant.WEBDRIVER.findElement(locator).isDisplayed();
@@ -59,10 +51,6 @@ public class Utilities {
 			return false;
 		}
 	}
-
-//	public static WebElement getElement(By locator) {
-//		return Constant.WEBDRIVER.findElement(locator);
-//	}
 
 	public static WebElement getElement(By locator) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
@@ -83,9 +71,14 @@ public class Utilities {
 
 	public static void click(By locator) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
-		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-		JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
-		js.executeScript("arguments[0].click();", element);
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+		try {
+			element.click();
+		} catch (Exception e) {
+			JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+			js.executeScript("arguments[0].click();", element);
+		}
 	}
 
 	public static void enter(By locator, String valueString) {
@@ -99,16 +92,6 @@ public class Utilities {
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		return element.getText().trim();
 	}
-
-	// 20/02/2026
-//	public static String getTextElementByJS(By locator) {
-//		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
-//		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-//		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-//		String text = (String) ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("return arguments[0].innerText;",
-//				element);
-//		return text.strip();
-//	}
 
 	// close all tab exception tab handle
 	public static void closeAllTabExceptHandle(String keepHandle) {
@@ -141,43 +124,11 @@ public class Utilities {
 		}
 	}
 
-	public static String getDateAfterDays(String days) {
-		int numberOfDays = Integer.parseInt(days);
-		LocalDate targetDate = LocalDate.now().plusDays(numberOfDays);
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
-		return targetDate.format(formatter);
-	}
-
-	public static String getDateAfterDaysFromSelected(By dropdownLocator, String days) {
-
-		int numberOfDays = Integer.parseInt(days);
-
-		// 1. set selected date from UI
-		WebElement element = Constant.WEBDRIVER.findElement(dropdownLocator);
-		Select select = new Select(element);
-		String selectedDateText = select.getFirstSelectedOption().getText();
-
-		// 2. set date
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
-		LocalDate selectedDate = LocalDate.parse(selectedDateText, formatter);
-		LocalDate targetDate = selectedDate.plusDays(numberOfDays);
-
-		// 4. return formatted date
-		return targetDate.format(formatter);
-	}
-
 	public static void selectByVisibleText(By locator, String visibleText) {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
 		Select select = new Select(element);
 		select.selectByVisibleText(visibleText);
-	}
-
-	public static String getCellValueByHeader(String headerName, int rowIndex) {
-		String dynamicXpath = String.format(
-				"(//tr[%d]/td[count(//th[normalize-space()='%s']/preceding-sibling::th)+1])", rowIndex, headerName);
-
-		return Constant.WEBDRIVER.findElement(By.xpath(dynamicXpath)).getText();
 	}
 
 	public static String randomDate(int startOffsetDays, int endOffsetDays, String formatDay) {
@@ -188,6 +139,21 @@ public class Utilities {
 		LocalDate randomDate = LocalDate.ofEpochDay(randomDays);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDay);
 		return randomDate.format(formatter);
+	}
+
+	// 21/01
+//	public static WebElement waitForText(By locator, String text, int timeout) {
+//		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
+//		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text))
+//				? Constant.WEBDRIVER.findElement(locator)
+//				: null;
+//	}
+
+	public static WebElement waitForText(By locator, String text, int timeout) {
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
+		wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
+
+		return Constant.WEBDRIVER.findElement(locator);
 	}
 
 //	public static void scrollToElement(WebElement webElement) {

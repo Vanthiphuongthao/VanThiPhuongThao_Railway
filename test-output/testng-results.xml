@@ -1,28 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
+<testng-results ignored="2" total="3" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-20T05:59:20 GMT+07:00" name="Default suite" finished-at="2026-02-20T06:00:06 GMT+07:00" duration-ms="45788">
+  <suite started-at="2026-02-21T21:03:22 GMT+07:00" name="Suite" finished-at="2026-02-21T21:04:03 GMT+07:00" duration-ms="41008">
     <groups>
     </groups>
-    <test started-at="2026-02-20T05:59:20 GMT+07:00" name="Default test" finished-at="2026-02-20T06:00:06 GMT+07:00" duration-ms="45788">
-      <class name="Railway.ResetPasswordTest">
-        <test-method is-config="true" signature="beforeMethod(java.lang.String)[pri:0, instance:Railway.ResetPasswordTest@c33b74f]" started-at="2026-02-20T05:59:20 GMT+07:00" name="beforeMethod" finished-at="2026-02-20T05:59:22 GMT+07:00" duration-ms="1801" status="PASS">
+    <test started-at="2026-02-21T21:03:22 GMT+07:00" name="Test" finished-at="2026-02-21T21:04:03 GMT+07:00" duration-ms="41008">
+      <class name="Railway.CreateAccountTest">
+        <test-method is-config="true" signature="beforeMethod(java.lang.String)[pri:0, instance:Railway.CreateAccountTest@708f5957]" started-at="2026-02-21T21:03:22 GMT+07:00" name="beforeMethod" finished-at="2026-02-21T21:03:29 GMT+07:00" duration-ms="6952" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[chrome]]>
+                <![CDATA[firefox]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="TC11()[pri:0, instance:Railway.ResetPasswordTest@c33b74f]" started-at="2026-02-20T05:59:22 GMT+07:00" name="TC11" finished-at="2026-02-20T06:00:06 GMT+07:00" duration-ms="43931" status="PASS">
+        <test-method signature="TC07()[pri:0, instance:Railway.CreateAccountTest@708f5957]" started-at="2026-02-21T21:03:29 GMT+07:00" name="TC07" finished-at="2026-02-21T21:04:03 GMT+07:00" duration-ms="33996" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for element found by By.xpath: //span[@id='inbox-id'] to be clickable, but the element was not found: org.openqa.selenium.NoSuchElementException: Unable to locate element: //span[@id='inbox-id'].
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: '4.40.0', revision: 'b3333f1'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 147.0.4, moz:accessibilityChecks: false, moz:buildID: 20260212191108, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 10524, moz:profile: C:\Users\Admin\AppData\Loca..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 974fd10e-8a63-435b-b607-f506725224f9]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element found by By.xpath: //span[@id='inbox-id'] to be clickable, but the element was not found: org.openqa.selenium.NoSuchElementException: Unable to locate element: //span[@id='inbox-id'].
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: '4.40.0', revision: 'b3333f1'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 147.0.4, moz:accessibilityChecks: false, moz:buildID: 20260212191108, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 10524, moz:profile: C:\Users\Admin\AppData\Loca..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 974fd10e-8a63-435b-b607-f506725224f9
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at Common.Utilities.click(Utilities.java:74)
+at GuerrillaMail.GuerrillaMailPage.setMail(GuerrillaMailPage.java:39)
+at Railway.Business.registerAccount(Business.java:43)
+at Railway.CreateAccountTest.TC07(CreateAccountTest.java:24)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC11 -->
-      </class> <!-- Railway.ResetPasswordTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- TC07 -->
+      </class> <!-- Railway.CreateAccountTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

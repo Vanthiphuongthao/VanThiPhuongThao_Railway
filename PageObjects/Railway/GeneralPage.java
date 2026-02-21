@@ -1,9 +1,12 @@
 package Railway;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Common.Utilities;
 import Constant.Constant;
@@ -36,8 +39,8 @@ public abstract class GeneralPage {
 
 	// Methods
 	public void clickTab(Tabs tab) {
-		String xpath = String.format(strTabName, tab.getTab());
-		Utilities.waitForClickable(By.xpath(xpath), Constant.TIMEOUT);
+	    String xpath = String.format(strTabName, tab.getTab());
+	    Utilities.click(By.xpath(xpath));
 	}
 
 	public <T extends GeneralPage> T gotoPage(Tabs tab, Class<T> expectedPage) {
@@ -50,13 +53,22 @@ public abstract class GeneralPage {
 		}
 	}
 
-	public String getWelcomeMessage() {
-		return Utilities.waitForVisible(lblWelcomeMessage, Constant.TIMEOUT).getText();
-//		return Utilities.getTextElementByJS(lblWelcomeMessage);
+//	public String getWelcomeMessage() {
+//		return Utilities.waitForVisible(lblWelcomeMessage, Constant.TIMEOUT).getText();
+//	}
+
+	public String getWelcomeMessage(String expectedEmail) {
+		Utilities.waitForText(lblWelcomeMessage, expectedEmail, Constant.TIMEOUT);
+		return Constant.WEBDRIVER.findElement(lblWelcomeMessage).getText();
 	}
 
 	public String getSelectedTabName() {
 		return this.getSelectedTab().getText();
+	}
+	
+	public void waitTabSelected(Tabs tab) {
+	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
+	    wait.until(ExpectedConditions.textToBe(selectedTab, tab.getTab()));
 	}
 
 	public boolean isTabExist(Tabs tab) {

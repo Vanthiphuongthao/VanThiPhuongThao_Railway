@@ -19,14 +19,14 @@ public class BookTicketTest extends BaseTest {
 	public void TC12() {
 		String mainTab = "Safe Railway";
 
-		String departDate = "2";
+		String plusDate = "2";
 		String departFrom = Station.NHA_TRANG.setStation();
 		String arriveAt = Station.HUE.setStation();
 		String seatType = SeatType.SOFT_BED_AC.getSeatType();
 		Integer amountTicket = 1;
 
 		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
-		TicketInfo ticket = new TicketInfo(departDate, departFrom, arriveAt, seatType, amountTicket);
+		TicketInfo ticket = new TicketInfo(plusDate, departFrom, arriveAt, seatType, amountTicket);
 
 		System.out.println("TestCase12 - User can book 1 ticket at a time");
 
@@ -73,14 +73,14 @@ public class BookTicketTest extends BaseTest {
 	public void TC13() {
 		String mainTab = "Safe Railway";
 
-		String departDate = "25";
+		String plusDate = "25";
 		String departFrom = Station.NHA_TRANG.setStation();
 		String arriveAt = Station.SAI_GON.setStation();
 		String seatType = SeatType.SOFT_SEAT_AC.getSeatType();
 		Integer amountTicket = 5;
 
 		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
-		TicketInfo ticket = new TicketInfo(departDate, departFrom, arriveAt, seatType, amountTicket);
+		TicketInfo ticket = new TicketInfo(plusDate, departFrom, arriveAt, seatType, amountTicket);
 
 		System.out.println("TestCase13 - User can book many tickets at a time");
 
@@ -189,14 +189,14 @@ public class BookTicketTest extends BaseTest {
 	public void TC15() {
 		String mainTab = "Safe Railway";
 
-		String departDate = "1";
+		String plusDate = "1";
 		String departFrom = Station.QUANG_NGAI.setStation();
 		String arriveAt = Station.HUE.setStation();
 		String seatType = SeatType.SOFT_SEAT_AC.getSeatType();
 		Integer amountTicket = 5;
 
 		UserAccount userAccount = new UserAccount(Constant.USERNAME, Constant.PASSWORD, Constant.PID);
-		TicketInfo ticket = new TicketInfo(departDate, departFrom, arriveAt, seatType, amountTicket);
+		TicketInfo ticket = new TicketInfo(plusDate, departFrom, arriveAt, seatType, amountTicket);
 
 		System.out.println("TestCase15 - User can book ticket from Timetable");
 

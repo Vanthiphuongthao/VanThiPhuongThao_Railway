@@ -7,8 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-import org.openqa.selenium.Dimension;
-
 import Constant.Constant;
 
 public class BaseTest {
@@ -23,14 +21,11 @@ public class BaseTest {
 
 		}
 		Constant.WEBDRIVER.manage().window().maximize();
-		
-		// 19/02
-//		Constant.WEBDRIVER.manage().window().setSize(new Dimension(1237, 870));
 	}
 
-//	@AfterMethod
-//	public void afterMethod() {
-//		Constant.WEBDRIVER.quit();
-//	}
+	@AfterMethod
+	public void afterMethod() {
+		Constant.WEBDRIVER.quit();
+	}
 
 }

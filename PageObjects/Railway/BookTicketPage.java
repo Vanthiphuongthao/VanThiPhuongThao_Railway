@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import Common.Utilities;
+import Constant.Constant;
 import Enums.TicketHeader;
 
 public class BookTicketPage extends GeneralPage {
@@ -25,8 +26,6 @@ public class BookTicketPage extends GeneralPage {
 	private final By lblBookTicketSuccessMsg = By.xpath("//h1[normalize-space()='Ticket booked successfully!']");
 
 	private final String rowTableBookTicket = "//table//tr[td]/td[count(//th[normalize-space()='%s']/preceding-sibling::th)+1]";
-
-	// Elements
 
 	// Methods
 	public void selectDepartDate(String date) {
@@ -53,17 +52,38 @@ public class BookTicketPage extends GeneralPage {
 		Utilities.click(btnBookTicket);
 	}
 
-	public String getDateAfterDaysFromDefault(String days) {
-		return Utilities.getDateAfterDaysFromSelected(ddlDepartDate, days);
+	public static String getDateAfterDaysFromSelected(By dropdownLocator, String days) {
+
+		int numberOfDays = Integer.parseInt(days);
+
+		// 1. set selected date from UI
+		WebElement element = Constant.WEBDRIVER.findElement(dropdownLocator);
+		Select select = new Select(element);
+		String selectedDateText = select.getFirstSelectedOption().getText();
+
+		// 2. set date
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+		LocalDate selectedDate = LocalDate.parse(selectedDateText, formatter);
+		LocalDate targetDate = selectedDate.plusDays(numberOfDays);
+
+		// 4. return formatted date
+		return targetDate.format(formatter);
 	}
-//	public void selectDepartDateAfterDays(String days) {
-//		String targetDate = Utilities.getDateAfterDaysFromSelected(ddlDepartDate, days);
-//		Utilities.selectByVisibleText(ddlDepartDate, targetDate);
-//	}
+
+	public String getDateAfterDaysFromDefault(String days) {
+		return getDateAfterDaysFromSelected(ddlDepartDate, days);
+	}
+	
+	public static String getDateAfterDays(String days) {
+		int numberOfDays = Integer.parseInt(days);
+		LocalDate targetDate = LocalDate.now().plusDays(numberOfDays);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+		return targetDate.format(formatter);
+	}
 
 	// with local Date
 	public void getDateAfterDaysWithLocalDate(String days) {
-		String targetDate = Utilities.getDateAfterDays(days);
+		String targetDate = getDateAfterDays(days);
 		Utilities.selectByVisibleText(ddlDepartDate, targetDate);
 	}
 
